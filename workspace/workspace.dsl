@@ -34,6 +34,9 @@ workspace {
                 vodDb = component "Video On Demand Database" "A database for storing video on demand content" {
                     tags Database
                 }
+
+                videoIngestionComponent -> videoChunksProcessor "processes video chunks"
+                videoChunksProcessor -> vodDb "stores video metadata"
             }
 
             chatService = container "Chat Service" "A chat application for users to communicate with each other" {
@@ -42,6 +45,7 @@ workspace {
                 chatDb = component "Chat Database" "A database for storing chat messages" {
                     tags Database
                 }
+                chatComponent -> chatDb "stores chat messages"
             }
 
             paymentsService = container "Payments Service" "A payment processing system for streamers to receive donations and tips" {
@@ -51,11 +55,14 @@ workspace {
                 paymentsDb = component "Payments Database" "A database for storing payment information" postgres {
                     tags Database
                 }
+                paymentComponent -> paymentsDb "stores payment information"
             }
 
             storageService = container "Storage Service" "A storage system for storing live streams and user data" {
 
             }
+
+            videoChunksProcessor -> storageService "stores video chunks"
 
             userService = container "User Service" "A web-based user interface for users to interact with the platform" {
                 userBackend = component "User Backend" {
@@ -65,26 +72,46 @@ workspace {
                 userDb = component "User Database" "A database for storing user information" {
                     tags Database
                 }
+
+                userBackend -> userDb "read/writes user data"
             }
         }
 
+        user -> webUI "interacts with"
+        streamer -> webUI "broadcasts music sessions"
+        webUI -> videoStreamComponent "Obtain streaming sessions"
+        webUI -> videoOnDemandService "Get videos on demand"
+        webUI -> chatComponent "Send and receive messages"
+        webUI -> paymentComponent "Process payments"
+        webUI -> userBackend "User-related operations"
+
+        videoStreamComponent -> storageService "Stores session videos"
+
         paypal = softwareSystem "PayPal" "A payment gateway for processing payments" {
+            tags external
             paypalService = container "PayPal" "A payment gateway for processing payments" {
                 tags external
             }
         }
 
         stripe = softwareSystem "Stripe" "A payment gateway for processing payments" {
+            tags external
             stripeService = container "Stripe" "A payment gateway for processing payments" {
                 tags external
             }
         }
 
+        paymentComponent -> paypalService "Process payments"
+        paymentComponent -> stripeService "Process payments"
+
         auth0 = softwareSystem "Auth0" "A user authentication and authorization service" {
+            tags external
             autho0Service = container "Stripe" "A payment gateway for processing payments" {
                 tags external
             }
         }
+
+        userBackend -> autho0Service "User authentication and authorization"
 
         production = deploymentEnvironment "Production Environment" {
 
@@ -96,7 +123,6 @@ workspace {
         themes https://static.structurizr.com/themes/amazon-web-services-2023.01.31/theme.json
         themes https://static.structurizr.com/themes/amazon-web-services-2022.04.30/theme.json
         themes https://static.structurizr.com/themes/amazon-web-services-2020.04.30/theme.json
-
 
         branding {
             logo images/gsas_logo.png
