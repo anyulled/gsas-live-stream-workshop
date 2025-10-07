@@ -67,7 +67,7 @@
   },
   "id" : 1,
   "lastModifiedAgent" : "structurizr-ui",
-  "lastModifiedDate" : "2025-10-07T15:12:42Z",
+  "lastModifiedDate" : "2025-10-07T15:38:33Z",
   "model" : {
     "people" : [ {
       "description" : "Watches live streams and interacts with the platform",
@@ -90,10 +90,20 @@
     } ],
     "softwareSystems" : [ {
       "containers" : [ {
+        "description" : "A web-based user interface for users to watch live streams and interact with the platform",
+        "documentation" : { },
+        "id" : "4",
+        "name" : "Web UI",
+        "properties" : {
+          "structurizr.dsl.identifier" : "webui"
+        },
+        "tags" : "Element,Container",
+        "technology" : "Next.js"
+      }, {
         "components" : [ {
           "description" : "A component for streaming live video",
           "documentation" : { },
-          "id" : "5",
+          "id" : "6",
           "name" : "Video Stream Component",
           "properties" : {
             "structurizr.dsl.identifier" : "videostreamcomponent"
@@ -102,7 +112,7 @@
         } ],
         "description" : "A live video stream",
         "documentation" : { },
-        "id" : "4",
+        "id" : "5",
         "name" : "Live Stream",
         "properties" : {
           "structurizr.dsl.identifier" : "streamservice"
@@ -112,7 +122,7 @@
         "components" : [ {
           "description" : "A component for ingesting live video streams from streamers",
           "documentation" : { },
-          "id" : "7",
+          "id" : "8",
           "name" : "Video Ingestion Component",
           "properties" : {
             "structurizr.dsl.identifier" : "videoingestioncomponent"
@@ -121,7 +131,7 @@
         }, {
           "description" : "A component for processing video chunks",
           "documentation" : { },
-          "id" : "8",
+          "id" : "9",
           "name" : "Video Chunks Processor",
           "properties" : {
             "structurizr.dsl.identifier" : "videochunksprocessor"
@@ -130,7 +140,7 @@
         } ],
         "description" : "A service for ingesting live video streams from streamers",
         "documentation" : { },
-        "id" : "6",
+        "id" : "7",
         "name" : "Video Ingestion Service",
         "properties" : {
           "structurizr.dsl.identifier" : "videoingestionservice"
@@ -140,7 +150,7 @@
         "components" : [ {
           "description" : "A chat component for users to communicate with each other",
           "documentation" : { },
-          "id" : "10",
+          "id" : "11",
           "name" : "Chat Component",
           "properties" : {
             "structurizr.dsl.identifier" : "chatcomponent"
@@ -149,7 +159,7 @@
         }, {
           "description" : "A database for storing chat messages",
           "documentation" : { },
-          "id" : "11",
+          "id" : "12",
           "name" : "Chat Database",
           "properties" : {
             "structurizr.dsl.identifier" : "chatdb"
@@ -158,7 +168,7 @@
         } ],
         "description" : "A chat application for users to communicate with each other",
         "documentation" : { },
-        "id" : "9",
+        "id" : "10",
         "name" : "Chat Service",
         "properties" : {
           "structurizr.dsl.identifier" : "chatservice"
@@ -168,16 +178,17 @@
         "components" : [ {
           "description" : "A component for processing payments",
           "documentation" : { },
-          "id" : "13",
+          "id" : "14",
           "name" : "Payment Component",
           "properties" : {
             "structurizr.dsl.identifier" : "paymentcomponent"
           },
-          "tags" : "Element,Component"
+          "tags" : "Element,Component,spring",
+          "technology" : "java"
         }, {
           "description" : "A database for storing payment information",
           "documentation" : { },
-          "id" : "14",
+          "id" : "15",
           "name" : "Payments Database",
           "properties" : {
             "structurizr.dsl.identifier" : "paymentsdb"
@@ -186,7 +197,7 @@
         }, {
           "description" : "A payment gateway for processing payments",
           "documentation" : { },
-          "id" : "15",
+          "id" : "16",
           "name" : "Stripe",
           "properties" : {
             "structurizr.dsl.identifier" : "stripe"
@@ -195,7 +206,7 @@
         }, {
           "description" : "A payment gateway for processing payments",
           "documentation" : { },
-          "id" : "16",
+          "id" : "17",
           "name" : "PayPal",
           "properties" : {
             "structurizr.dsl.identifier" : "paypal"
@@ -204,7 +215,7 @@
         } ],
         "description" : "A payment processing system for streamers to receive donations and tips",
         "documentation" : { },
-        "id" : "12",
+        "id" : "13",
         "name" : "Payments Service",
         "properties" : {
           "structurizr.dsl.identifier" : "paymentsservice"
@@ -213,7 +224,7 @@
       }, {
         "description" : "A storage system for storing live streams and user data",
         "documentation" : { },
-        "id" : "17",
+        "id" : "18",
         "name" : "Storage Service",
         "properties" : {
           "structurizr.dsl.identifier" : "storageservice"
@@ -223,7 +234,7 @@
         "components" : [ {
           "description" : "A backend component for handling user-related operations",
           "documentation" : { },
-          "id" : "19",
+          "id" : "20",
           "name" : "User Backend",
           "properties" : {
             "structurizr.dsl.identifier" : "userbackend"
@@ -232,7 +243,7 @@
         }, {
           "description" : "A database for storing user information",
           "documentation" : { },
-          "id" : "20",
+          "id" : "21",
           "name" : "User Database",
           "properties" : {
             "structurizr.dsl.identifier" : "userdb"
@@ -241,7 +252,7 @@
         } ],
         "description" : "A web-based user interface for users to interact with the platform",
         "documentation" : { },
-        "id" : "18",
+        "id" : "19",
         "name" : "User Service",
         "properties" : {
           "structurizr.dsl.identifier" : "userservice"
@@ -261,7 +272,7 @@
   },
   "name" : "Live-stream platform for musicians",
   "properties" : {
-    "structurizr.dsl" : "d29ya3NwYWNlIHsKICAgIG5hbWUgIkxpdmUtc3RyZWFtIHBsYXRmb3JtIGZvciBtdXNpY2lhbnMiCiAgICBkZXNjcmlwdGlvbiAiVGhlIHNvZnR3YXJlIGFyY2hpdGVjdHVyZSBvZiB0aGUgU3RhZ2VDYXN0IHBsYXRmb3JtLiIKCiAgICAhYWRycyBhZHJzCiAgICAhZG9jcyBkb2NzCgogICAgbW9kZWwgewogICAgICAgIHVzZXIgPSBwZXJzb24gIlVzZXIiICJXYXRjaGVzIGxpdmUgc3RyZWFtcyBhbmQgaW50ZXJhY3RzIHdpdGggdGhlIHBsYXRmb3JtIiB7CiAgICAgICAgICAgIHRhZ3Mgdmlld2VyCiAgICAgICAgfQogICAgICAgIHN0cmVhbWVyID0gcGVyc29uICJTdHJlYW1lciIgIkJyb2FkY2FzdHMgbGl2ZSB2aWRlbyBzdHJlYW1zIiB7CiAgICAgICAgICAgIHRhZ3Mgc3RyZWFtZXIKICAgICAgICB9CgogICAgICAgIGxpdmVTdHJlYW0gPSBzb2Z0d2FyZVN5c3RlbSAiTGl2ZSBTdHJlYW0gUGxhdGZvcm0iICJBIHBsYXRmb3JtIGZvciBtdXNpY2lhbnMgdG8gYnJvYWRjYXN0IGFuZCB3YXRjaCBsaXZlIHZpZGVvIHN0cmVhbXMiIHsKICAgICAgICAgICAgc3RyZWFtU2VydmljZSA9IGNvbnRhaW5lciAiTGl2ZSBTdHJlYW0iICJBIGxpdmUgdmlkZW8gc3RyZWFtIiB7CiAgICAgICAgICAgICAgICB2aWRlb1N0cmVhbUNvbXBvbmVudCA9IGNvbXBvbmVudCAiVmlkZW8gU3RyZWFtIENvbXBvbmVudCIgIkEgY29tcG9uZW50IGZvciBzdHJlYW1pbmcgbGl2ZSB2aWRlbyIgewoKICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgfQogICAgICAgICAgICB2aWRlb0luZ2VzdGlvblNlcnZpY2UgPSBjb250YWluZXIgIlZpZGVvIEluZ2VzdGlvbiBTZXJ2aWNlIiAiQSBzZXJ2aWNlIGZvciBpbmdlc3RpbmcgbGl2ZSB2aWRlbyBzdHJlYW1zIGZyb20gc3RyZWFtZXJzIiB7CiAgICAgICAgICAgICAgICB2aWRlb0luZ2VzdGlvbkNvbXBvbmVudCA9IGNvbXBvbmVudCAiVmlkZW8gSW5nZXN0aW9uIENvbXBvbmVudCIgIkEgY29tcG9uZW50IGZvciBpbmdlc3RpbmcgbGl2ZSB2aWRlbyBzdHJlYW1zIGZyb20gc3RyZWFtZXJzIiB7CgogICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgdmlkZW9DaHVua3NQcm9jZXNzb3IgPSBjb21wb25lbnQgIlZpZGVvIENodW5rcyBQcm9jZXNzb3IiICJBIGNvbXBvbmVudCBmb3IgcHJvY2Vzc2luZyB2aWRlbyBjaHVua3MiIHsKCiAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgIH0KICAgICAgICAgICAgY2hhdFNlcnZpY2UgPSBjb250YWluZXIgIkNoYXQgU2VydmljZSIgIkEgY2hhdCBhcHBsaWNhdGlvbiBmb3IgdXNlcnMgdG8gY29tbXVuaWNhdGUgd2l0aCBlYWNoIG90aGVyIiB7CiAgICAgICAgICAgICAgICBjaGF0Q29tcG9uZW50ID0gY29tcG9uZW50ICJDaGF0IENvbXBvbmVudCIgIkEgY2hhdCBjb21wb25lbnQgZm9yIHVzZXJzIHRvIGNvbW11bmljYXRlIHdpdGggZWFjaCBvdGhlciIgewoKICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgIGNoYXREYiA9IGNvbXBvbmVudCAiQ2hhdCBEYXRhYmFzZSIgIkEgZGF0YWJhc2UgZm9yIHN0b3JpbmcgY2hhdCBtZXNzYWdlcyIgewogICAgICAgICAgICAgICAgICAgIHRhZ3MgRGF0YWJhc2UKICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgfQogICAgICAgICAgICBwYXltZW50c1NlcnZpY2UgPSBjb250YWluZXIgIlBheW1lbnRzIFNlcnZpY2UiICJBIHBheW1lbnQgcHJvY2Vzc2luZyBzeXN0ZW0gZm9yIHN0cmVhbWVycyB0byByZWNlaXZlIGRvbmF0aW9ucyBhbmQgdGlwcyIgewogICAgICAgICAgICAgICAgcGF5bWVudENvbXBvbmVudCA9IGNvbXBvbmVudCAiUGF5bWVudCBDb21wb25lbnQiICJBIGNvbXBvbmVudCBmb3IgcHJvY2Vzc2luZyBwYXltZW50cyIgewoKICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgIHBheW1lbnRzRGIgPSBjb21wb25lbnQgIlBheW1lbnRzIERhdGFiYXNlIiAiQSBkYXRhYmFzZSBmb3Igc3RvcmluZyBwYXltZW50IGluZm9ybWF0aW9uIiB7CiAgICAgICAgICAgICAgICAgICAgdGFncyBEYXRhYmFzZQogICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgc3RyaXBlID0gY29tcG9uZW50ICJTdHJpcGUiICJBIHBheW1lbnQgZ2F0ZXdheSBmb3IgcHJvY2Vzc2luZyBwYXltZW50cyIgewogICAgICAgICAgICAgICAgICAgIHRhZ3MgZXh0ZXJuYWwKICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgIHBheXBhbCA9IGNvbXBvbmVudCAiUGF5UGFsIiAiQSBwYXltZW50IGdhdGV3YXkgZm9yIHByb2Nlc3NpbmcgcGF5bWVudHMiIHsKICAgICAgICAgICAgICAgICAgICB0YWdzIGV4dGVybmFsCiAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgIH0KICAgICAgICAgICAgc3RvcmFnZVNlcnZpY2UgPSBjb250YWluZXIgIlN0b3JhZ2UgU2VydmljZSIgIkEgc3RvcmFnZSBzeXN0ZW0gZm9yIHN0b3JpbmcgbGl2ZSBzdHJlYW1zIGFuZCB1c2VyIGRhdGEiIHsKCiAgICAgICAgICAgIH0KICAgICAgICAgICAgdXNlclNlcnZpY2UgPSBjb250YWluZXIgIlVzZXIgU2VydmljZSIgIkEgd2ViLWJhc2VkIHVzZXIgaW50ZXJmYWNlIGZvciB1c2VycyB0byBpbnRlcmFjdCB3aXRoIHRoZSBwbGF0Zm9ybSIgewogICAgICAgICAgICAgICAgdXNlckJhY2tlbmQgPSBjb21wb25lbnQgIlVzZXIgQmFja2VuZCIgIkEgYmFja2VuZCBjb21wb25lbnQgZm9yIGhhbmRsaW5nIHVzZXItcmVsYXRlZCBvcGVyYXRpb25zIiB7CgogICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgdXNlckRiID0gY29tcG9uZW50ICJVc2VyIERhdGFiYXNlIiAiQSBkYXRhYmFzZSBmb3Igc3RvcmluZyB1c2VyIGluZm9ybWF0aW9uIiB7CiAgICAgICAgICAgICAgICAgICAgdGFncyBEYXRhYmFzZQogICAgICAgICAgICAgICAgfQogICAgICAgICAgICB9CiAgICAgICAgfQoKCiAgICAgICAgcHJvZHVjdGlvbiA9IGRlcGxveW1lbnRFbnZpcm9ubWVudCAiUHJvZHVjdGlvbiBFbnZpcm9ubWVudCIgewoKICAgICAgICB9CiAgICB9CgogICAgdmlld3MgewogICAgICAgIHRoZW1lIGRlZmF1bHQKICAgICAgICB0aGVtZXMgaHR0cHM6Ly9zdGF0aWMuc3RydWN0dXJpenIuY29tL3RoZW1lcy9hbWF6b24td2ViLXNlcnZpY2VzLTIwMjMuMDEuMzEvdGhlbWUuanNvbgogICAgICAgIHRoZW1lcyBodHRwczovL3N0YXRpYy5zdHJ1Y3R1cml6ci5jb20vdGhlbWVzL2FtYXpvbi13ZWItc2VydmljZXMtMjAyMi4wNC4zMC90aGVtZS5qc29uCiAgICAgICAgdGhlbWVzIGh0dHBzOi8vc3RhdGljLnN0cnVjdHVyaXpyLmNvbS90aGVtZXMvYW1hem9uLXdlYi1zZXJ2aWNlcy0yMDIwLjA0LjMwL3RoZW1lLmpzb24KCgogICAgICAgIGJyYW5kaW5nIHsKICAgICAgICAgICAgbG9nbyBpbWFnZXMvZ3Nhc19sb2dvLnBuZwogICAgICAgIH0KCiAgICAgICAgc3R5bGVzIHsKCiAgICAgICAgICAgIGVsZW1lbnQgIkNvbnRhaW5lciIgewogICAgICAgICAgICAgICAgc2hhcGUgcm91bmRlZGJveAogICAgICAgICAgICB9CgogICAgICAgICAgICBlbGVtZW50ICJEYXRhYmFzZSIgewogICAgICAgICAgICAgICAgc2hhcGUgY3lsaW5kZXIKICAgICAgICAgICAgfQoKICAgICAgICAgICAgZWxlbWVudCAiR3JvdXA6VGhpcmQtcGFydHkiIHsKICAgICAgICAgICAgICAgIGJvcmRlciBkb3R0ZWQKICAgICAgICAgICAgICAgIGNvbG9yICNBQTAwMDAKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgI0JCMDAwMAogICAgICAgICAgICAgICAgb3BhY2l0eSA3NQogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgImV4dGVybmFsIiB7CiAgICAgICAgICAgICAgICBzaGFwZSBjb21wb25lbnQKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgIzAwMDA4OAogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIkRhdGFiYXNlIiB7CiAgICAgICAgICAgICAgICBjb2xvciAjRkZGRkZGCiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICMwMGFhMDAKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJzcGVha2VyIiB7CiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICMwMDAwMDAKICAgICAgICAgICAgICAgIGNvbG9yICNmZmZmZmYKICAgICAgICAgICAgfQoKICAgICAgICAgICAgZWxlbWVudCAidmlld2VyIiB7CiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICMwMDI0NTQKICAgICAgICAgICAgICAgIGNvbG9yICNmZmZmZmYKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJzdHJlYW1lciIgewogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjRkYwMDAwCiAgICAgICAgICAgICAgICBjb2xvciAjZmZmZmZmCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiRGF0YWJhc2UiIHsKICAgICAgICAgICAgICAgIHNoYXBlIGN5bGluZGVyCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAid2Vic2l0ZSIgewogICAgICAgICAgICAgICAgc2hhcGUgV2ViQnJvd3NlcgogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIlVidW50dSIgewogICAgICAgICAgICAgICAgY29sb3IgI0U5NTQyMAogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjRTk1NDIwCiAgICAgICAgICAgICAgICBzdHJva2UgI0U5NTQyMAogICAgICAgICAgICAgICAgaWNvbiAiaW1hZ2VzL3VidW50dS1sb2dvLmpwZWciCiAgICAgICAgICAgIH0KICAgICAgICAgICAgcmVsYXRpb25zaGlwICJnUlBDIiB7CiAgICAgICAgICAgICAgICBjb2xvciAjMDAwMDg4CiAgICAgICAgICAgICAgICBzdHlsZSBkb3R0ZWQKICAgICAgICAgICAgfQogICAgICAgIH0KICAgIH0KCn0="
+    "structurizr.dsl" : "d29ya3NwYWNlIHsKICAgIG5hbWUgIkxpdmUtc3RyZWFtIHBsYXRmb3JtIGZvciBtdXNpY2lhbnMiCiAgICBkZXNjcmlwdGlvbiAiVGhlIHNvZnR3YXJlIGFyY2hpdGVjdHVyZSBvZiB0aGUgU3RhZ2VDYXN0IHBsYXRmb3JtLiIKCiAgICAhYWRycyBhZHJzCiAgICAhZG9jcyBkb2NzCgogICAgbW9kZWwgewogICAgICAgIHVzZXIgPSBwZXJzb24gIlVzZXIiICJXYXRjaGVzIGxpdmUgc3RyZWFtcyBhbmQgaW50ZXJhY3RzIHdpdGggdGhlIHBsYXRmb3JtIiB7CiAgICAgICAgICAgIHRhZ3Mgdmlld2VyCiAgICAgICAgfQogICAgICAgIHN0cmVhbWVyID0gcGVyc29uICJTdHJlYW1lciIgIkJyb2FkY2FzdHMgbGl2ZSB2aWRlbyBzdHJlYW1zIiB7CiAgICAgICAgICAgIHRhZ3Mgc3RyZWFtZXIKICAgICAgICB9CgogICAgICAgIGxpdmVTdHJlYW0gPSBzb2Z0d2FyZVN5c3RlbSAiTGl2ZSBTdHJlYW0gUGxhdGZvcm0iICJBIHBsYXRmb3JtIGZvciBtdXNpY2lhbnMgdG8gYnJvYWRjYXN0IGFuZCB3YXRjaCBsaXZlIHZpZGVvIHN0cmVhbXMiIHsKICAgICAgICAgICAgd2ViVUkgPSBjb250YWluZXIgIldlYiBVSSIgewogICAgICAgICAgICAgICAgZGVzY3JpcHRpb24gIkEgd2ViLWJhc2VkIHVzZXIgaW50ZXJmYWNlIGZvciB1c2VycyB0byB3YXRjaCBsaXZlIHN0cmVhbXMgYW5kIGludGVyYWN0IHdpdGggdGhlIHBsYXRmb3JtIgogICAgICAgICAgICAgICAgdGVjaG5vbG9neSAiTmV4dC5qcyIKICAgICAgICAgICAgfQoKICAgICAgICAgICAgc3RyZWFtU2VydmljZSA9IGNvbnRhaW5lciAiTGl2ZSBTdHJlYW0iICJBIGxpdmUgdmlkZW8gc3RyZWFtIiB7CiAgICAgICAgICAgICAgICB2aWRlb1N0cmVhbUNvbXBvbmVudCA9IGNvbXBvbmVudCAiVmlkZW8gU3RyZWFtIENvbXBvbmVudCIgIkEgY29tcG9uZW50IGZvciBzdHJlYW1pbmcgbGl2ZSB2aWRlbyIgewogICAgICAgICAgICAgICAgfQogICAgICAgICAgICB9CiAgICAgICAgICAgIHZpZGVvSW5nZXN0aW9uU2VydmljZSA9IGNvbnRhaW5lciAiVmlkZW8gSW5nZXN0aW9uIFNlcnZpY2UiICJBIHNlcnZpY2UgZm9yIGluZ2VzdGluZyBsaXZlIHZpZGVvIHN0cmVhbXMgZnJvbSBzdHJlYW1lcnMiIHsKICAgICAgICAgICAgICAgIHZpZGVvSW5nZXN0aW9uQ29tcG9uZW50ID0gY29tcG9uZW50ICJWaWRlbyBJbmdlc3Rpb24gQ29tcG9uZW50IiAiQSBjb21wb25lbnQgZm9yIGluZ2VzdGluZyBsaXZlIHZpZGVvIHN0cmVhbXMgZnJvbSBzdHJlYW1lcnMiIHsKCiAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICB2aWRlb0NodW5rc1Byb2Nlc3NvciA9IGNvbXBvbmVudCAiVmlkZW8gQ2h1bmtzIFByb2Nlc3NvciIgIkEgY29tcG9uZW50IGZvciBwcm9jZXNzaW5nIHZpZGVvIGNodW5rcyIgewoKICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgfQogICAgICAgICAgICBjaGF0U2VydmljZSA9IGNvbnRhaW5lciAiQ2hhdCBTZXJ2aWNlIiAiQSBjaGF0IGFwcGxpY2F0aW9uIGZvciB1c2VycyB0byBjb21tdW5pY2F0ZSB3aXRoIGVhY2ggb3RoZXIiIHsKICAgICAgICAgICAgICAgIGNoYXRDb21wb25lbnQgPSBjb21wb25lbnQgIkNoYXQgQ29tcG9uZW50IiAiQSBjaGF0IGNvbXBvbmVudCBmb3IgdXNlcnMgdG8gY29tbXVuaWNhdGUgd2l0aCBlYWNoIG90aGVyIiB7CgogICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgY2hhdERiID0gY29tcG9uZW50ICJDaGF0IERhdGFiYXNlIiAiQSBkYXRhYmFzZSBmb3Igc3RvcmluZyBjaGF0IG1lc3NhZ2VzIiB7CiAgICAgICAgICAgICAgICAgICAgdGFncyBEYXRhYmFzZQogICAgICAgICAgICAgICAgfQogICAgICAgICAgICB9CiAgICAgICAgICAgIHBheW1lbnRzU2VydmljZSA9IGNvbnRhaW5lciAiUGF5bWVudHMgU2VydmljZSIgIkEgcGF5bWVudCBwcm9jZXNzaW5nIHN5c3RlbSBmb3Igc3RyZWFtZXJzIHRvIHJlY2VpdmUgZG9uYXRpb25zIGFuZCB0aXBzIiB7CiAgICAgICAgICAgICAgICBwYXltZW50Q29tcG9uZW50ID0gY29tcG9uZW50ICJQYXltZW50IENvbXBvbmVudCIgIkEgY29tcG9uZW50IGZvciBwcm9jZXNzaW5nIHBheW1lbnRzIiBqYXZhIHNwcmluZyB7CgogICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgcGF5bWVudHNEYiA9IGNvbXBvbmVudCAiUGF5bWVudHMgRGF0YWJhc2UiICJBIGRhdGFiYXNlIGZvciBzdG9yaW5nIHBheW1lbnQgaW5mb3JtYXRpb24iIHsKICAgICAgICAgICAgICAgICAgICB0YWdzIERhdGFiYXNlCiAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICBzdHJpcGUgPSBjb21wb25lbnQgIlN0cmlwZSIgIkEgcGF5bWVudCBnYXRld2F5IGZvciBwcm9jZXNzaW5nIHBheW1lbnRzIiB7CiAgICAgICAgICAgICAgICAgICAgdGFncyBleHRlcm5hbAogICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgcGF5cGFsID0gY29tcG9uZW50ICJQYXlQYWwiICJBIHBheW1lbnQgZ2F0ZXdheSBmb3IgcHJvY2Vzc2luZyBwYXltZW50cyIgewogICAgICAgICAgICAgICAgICAgIHRhZ3MgZXh0ZXJuYWwKICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgfQogICAgICAgICAgICBzdG9yYWdlU2VydmljZSA9IGNvbnRhaW5lciAiU3RvcmFnZSBTZXJ2aWNlIiAiQSBzdG9yYWdlIHN5c3RlbSBmb3Igc3RvcmluZyBsaXZlIHN0cmVhbXMgYW5kIHVzZXIgZGF0YSIgewoKICAgICAgICAgICAgfQogICAgICAgICAgICB1c2VyU2VydmljZSA9IGNvbnRhaW5lciAiVXNlciBTZXJ2aWNlIiAiQSB3ZWItYmFzZWQgdXNlciBpbnRlcmZhY2UgZm9yIHVzZXJzIHRvIGludGVyYWN0IHdpdGggdGhlIHBsYXRmb3JtIiB7CiAgICAgICAgICAgICAgICB1c2VyQmFja2VuZCA9IGNvbXBvbmVudCAiVXNlciBCYWNrZW5kIiAiQSBiYWNrZW5kIGNvbXBvbmVudCBmb3IgaGFuZGxpbmcgdXNlci1yZWxhdGVkIG9wZXJhdGlvbnMiIHsKCiAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICB1c2VyRGIgPSBjb21wb25lbnQgIlVzZXIgRGF0YWJhc2UiICJBIGRhdGFiYXNlIGZvciBzdG9yaW5nIHVzZXIgaW5mb3JtYXRpb24iIHsKICAgICAgICAgICAgICAgICAgICB0YWdzIERhdGFiYXNlCiAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgIH0KICAgICAgICB9CgoKICAgICAgICBwcm9kdWN0aW9uID0gZGVwbG95bWVudEVudmlyb25tZW50ICJQcm9kdWN0aW9uIEVudmlyb25tZW50IiB7CgogICAgICAgIH0KICAgIH0KCiAgICB2aWV3cyB7CiAgICAgICAgdGhlbWUgZGVmYXVsdAogICAgICAgIHRoZW1lcyBodHRwczovL3N0YXRpYy5zdHJ1Y3R1cml6ci5jb20vdGhlbWVzL2FtYXpvbi13ZWItc2VydmljZXMtMjAyMy4wMS4zMS90aGVtZS5qc29uCiAgICAgICAgdGhlbWVzIGh0dHBzOi8vc3RhdGljLnN0cnVjdHVyaXpyLmNvbS90aGVtZXMvYW1hem9uLXdlYi1zZXJ2aWNlcy0yMDIyLjA0LjMwL3RoZW1lLmpzb24KICAgICAgICB0aGVtZXMgaHR0cHM6Ly9zdGF0aWMuc3RydWN0dXJpenIuY29tL3RoZW1lcy9hbWF6b24td2ViLXNlcnZpY2VzLTIwMjAuMDQuMzAvdGhlbWUuanNvbgoKCiAgICAgICAgYnJhbmRpbmcgewogICAgICAgICAgICBsb2dvIGltYWdlcy9nc2FzX2xvZ28ucG5nCiAgICAgICAgfQoKICAgICAgICBzdHlsZXMgewoKICAgICAgICAgICAgZWxlbWVudCAiQ29udGFpbmVyIiB7CiAgICAgICAgICAgICAgICBzaGFwZSByb3VuZGVkYm94CiAgICAgICAgICAgIH0KCiAgICAgICAgICAgIGVsZW1lbnQgIkRhdGFiYXNlIiB7CiAgICAgICAgICAgICAgICBzaGFwZSBjeWxpbmRlcgogICAgICAgICAgICB9CgogICAgICAgICAgICBlbGVtZW50ICJHcm91cDpUaGlyZC1wYXJ0eSIgewogICAgICAgICAgICAgICAgYm9yZGVyIGRvdHRlZAogICAgICAgICAgICAgICAgY29sb3IgI0FBMDAwMAogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjQkIwMDAwCiAgICAgICAgICAgICAgICBvcGFjaXR5IDc1CiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiZXh0ZXJuYWwiIHsKICAgICAgICAgICAgICAgIHNoYXBlIGNvbXBvbmVudAogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjMDAwMDg4CiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiRGF0YWJhc2UiIHsKICAgICAgICAgICAgICAgIGNvbG9yICNGRkZGRkYKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgIzAwYWEwMAogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgInNwZWFrZXIiIHsKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgIzAwMDAwMAogICAgICAgICAgICAgICAgY29sb3IgI2ZmZmZmZgogICAgICAgICAgICB9CgogICAgICAgICAgICBlbGVtZW50ICJ2aWV3ZXIiIHsKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgIzAwMjQ1NAogICAgICAgICAgICAgICAgY29sb3IgI2ZmZmZmZgogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgInN0cmVhbWVyIiB7CiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICNGRjAwMDAKICAgICAgICAgICAgICAgIGNvbG9yICNmZmZmZmYKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJEYXRhYmFzZSIgewogICAgICAgICAgICAgICAgc2hhcGUgY3lsaW5kZXIKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJ3ZWJzaXRlIiB7CiAgICAgICAgICAgICAgICBzaGFwZSBXZWJCcm93c2VyCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiVWJ1bnR1IiB7CiAgICAgICAgICAgICAgICBjb2xvciAjRTk1NDIwCiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICNFOTU0MjAKICAgICAgICAgICAgICAgIHN0cm9rZSAjRTk1NDIwCiAgICAgICAgICAgICAgICBpY29uICJpbWFnZXMvdWJ1bnR1LWxvZ28uanBlZyIKICAgICAgICAgICAgfQogICAgICAgICAgICByZWxhdGlvbnNoaXAgImdSUEMiIHsKICAgICAgICAgICAgICAgIGNvbG9yICMwMDAwODgKICAgICAgICAgICAgICAgIHN0eWxlIGRvdHRlZAogICAgICAgICAgICB9CiAgICAgICAgfQogICAgfQoKfQ=="
   },
   "views" : {
     "componentViews" : [ {
@@ -274,17 +285,17 @@
         "rankSeparation" : 300,
         "vertices" : false
       },
-      "containerId" : "9",
+      "containerId" : "10",
       "dimensions" : {
         "height" : 811,
         "width" : 1640
       },
       "elements" : [ {
-        "id" : "10",
+        "id" : "11",
         "x" : 969,
         "y" : 185
       }, {
-        "id" : "11",
+        "id" : "12",
         "x" : 219,
         "y" : 185
       } ],
@@ -302,13 +313,13 @@
         "rankSeparation" : 300,
         "vertices" : false
       },
-      "containerId" : "4",
+      "containerId" : "5",
       "dimensions" : {
         "height" : 811,
         "width" : 994
       },
       "elements" : [ {
-        "id" : "5",
+        "id" : "6",
         "x" : 271,
         "y" : 185
       } ],
@@ -326,25 +337,25 @@
         "rankSeparation" : 300,
         "vertices" : false
       },
-      "containerId" : "12",
+      "containerId" : "13",
       "dimensions" : {
         "height" : 811,
         "width" : 3140
       },
       "elements" : [ {
-        "id" : "13",
+        "id" : "14",
         "x" : 2469,
         "y" : 185
       }, {
-        "id" : "14",
+        "id" : "15",
         "x" : 1719,
         "y" : 185
       }, {
-        "id" : "15",
+        "id" : "16",
         "x" : 969,
         "y" : 185
       }, {
-        "id" : "16",
+        "id" : "17",
         "x" : 219,
         "y" : 185
       } ],
@@ -354,7 +365,7 @@
       "order" : 6
     }, {
       "automaticLayout" : {
-        "applied" : true,
+        "applied" : false,
         "edgeSeparation" : 0,
         "implementation" : "Graphviz",
         "nodeSeparation" : 300,
@@ -362,19 +373,15 @@
         "rankSeparation" : 300,
         "vertices" : false
       },
-      "containerId" : "18",
-      "dimensions" : {
-        "height" : 811,
-        "width" : 1640
-      },
+      "containerId" : "19",
       "elements" : [ {
-        "id" : "19",
-        "x" : 969,
-        "y" : 185
-      }, {
         "id" : "20",
-        "x" : 219,
-        "y" : 185
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "21",
+        "x" : 0,
+        "y" : 0
       } ],
       "externalContainerBoundariesVisible" : false,
       "generatedKey" : true,
@@ -382,7 +389,7 @@
       "order" : 7
     }, {
       "automaticLayout" : {
-        "applied" : true,
+        "applied" : false,
         "edgeSeparation" : 0,
         "implementation" : "Graphviz",
         "nodeSeparation" : 300,
@@ -390,19 +397,15 @@
         "rankSeparation" : 300,
         "vertices" : false
       },
-      "containerId" : "6",
-      "dimensions" : {
-        "height" : 811,
-        "width" : 1640
-      },
+      "containerId" : "7",
       "elements" : [ {
-        "id" : "7",
-        "x" : 969,
-        "y" : 185
-      }, {
         "id" : "8",
-        "x" : 219,
-        "y" : 185
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "9",
+        "x" : 0,
+        "y" : 0
       } ],
       "externalContainerBoundariesVisible" : false,
       "generatedKey" : true,
@@ -413,7 +416,7 @@
       "branding" : {
         "logo" : "data:image/png;base64,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"
       },
-      "lastSavedView" : "Component-005",
+      "lastSavedView" : "SystemContext-001",
       "metadataSymbols" : "SquareBrackets",
       "styles" : {
         "elements" : [ {
@@ -477,31 +480,35 @@
       },
       "dimensions" : {
         "height" : 811,
-        "width" : 4640
+        "width" : 5390
       },
       "elements" : [ {
         "id" : "4",
-        "x" : 1720,
+        "x" : 1719,
         "y" : 185
       }, {
-        "id" : "6",
-        "x" : 970,
+        "id" : "5",
+        "x" : 969,
         "y" : 185
       }, {
-        "id" : "9",
-        "x" : 220,
+        "id" : "7",
+        "x" : 219,
         "y" : 185
       }, {
-        "id" : "12",
-        "x" : 3970,
+        "id" : "10",
+        "x" : 4719,
         "y" : 185
       }, {
-        "id" : "17",
-        "x" : 3220,
+        "id" : "13",
+        "x" : 3969,
         "y" : 185
       }, {
         "id" : "18",
-        "x" : 2470,
+        "x" : 3219,
+        "y" : 185
+      }, {
+        "id" : "19",
+        "x" : 2469,
         "y" : 185
       } ],
       "externalSoftwareSystemBoundariesVisible" : false,
@@ -512,7 +519,7 @@
     } ],
     "systemContextViews" : [ {
       "automaticLayout" : {
-        "applied" : false,
+        "applied" : true,
         "edgeSeparation" : 0,
         "implementation" : "Graphviz",
         "nodeSeparation" : 300,
@@ -520,10 +527,14 @@
         "rankSeparation" : 300,
         "vertices" : false
       },
+      "dimensions" : {
+        "height" : 700,
+        "width" : 850
+      },
       "elements" : [ {
         "id" : "3",
-        "x" : 0,
-        "y" : 0
+        "x" : 200,
+        "y" : 165
       } ],
       "enterpriseBoundaryVisible" : true,
       "generatedKey" : true,
@@ -533,7 +544,7 @@
     } ],
     "systemLandscapeViews" : [ {
       "automaticLayout" : {
-        "applied" : false,
+        "applied" : true,
         "edgeSeparation" : 0,
         "implementation" : "Graphviz",
         "nodeSeparation" : 300,
@@ -541,18 +552,22 @@
         "rankSeparation" : 300,
         "vertices" : false
       },
+      "dimensions" : {
+        "height" : 800,
+        "width" : 2350
+      },
       "elements" : [ {
         "id" : "1",
-        "x" : 0,
-        "y" : 0
+        "x" : 200,
+        "y" : 165
       }, {
         "id" : "2",
-        "x" : 0,
-        "y" : 0
+        "x" : 950,
+        "y" : 165
       }, {
         "id" : "3",
-        "x" : 0,
-        "y" : 0
+        "x" : 1700,
+        "y" : 165
       } ],
       "enterpriseBoundaryVisible" : true,
       "generatedKey" : true,

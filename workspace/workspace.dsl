@@ -14,46 +14,53 @@ workspace {
         }
 
         liveStream = softwareSystem "Live Stream Platform" "A platform for musicians to broadcast and watch live video streams" {
+            webUI = container "Web UI" {
+                description "A web-based user interface for users to watch live streams and interact with the platform"
+                technology "Next.js"
+            }
+
             streamService = container "Live Stream" "A live video stream" {
                 videoStreamComponent = component "Video Stream Component" "A component for streaming live video" {
                 }
             }
-            videoIngestionService = container "Video Ingestion Service" "A service for ingesting live video streams from streamers" {
+
+            videoOnDemandService = container "Video Ingestion Service" "A service for ingesting live video streams from streamers" {
                 videoIngestionComponent = component "Video Ingestion Component" "A component for ingesting live video streams from streamers" {
 
                 }
                 videoChunksProcessor = component "Video Chunks Processor" "A component for processing video chunks" {
 
                 }
+                vodDb = component "Video On Demand Database" "A database for storing video on demand content" {
+                    tags Database
+                }
             }
+
             chatService = container "Chat Service" "A chat application for users to communicate with each other" {
                 chatComponent = component "Chat Component" "A chat component for users to communicate with each other" {
-
                 }
                 chatDb = component "Chat Database" "A database for storing chat messages" {
                     tags Database
                 }
             }
+
             paymentsService = container "Payments Service" "A payment processing system for streamers to receive donations and tips" {
-                paymentComponent = component "Payment Component" "A component for processing payments" {
+                paymentComponent = component "Payment Component" "A component for processing payments" java spring {
 
                 }
-                paymentsDb = component "Payments Database" "A database for storing payment information" {
+                paymentsDb = component "Payments Database" "A database for storing payment information" postgres {
                     tags Database
                 }
-                stripe = component "Stripe" "A payment gateway for processing payments" {
-                    tags external
-                }
-                paypal = component "PayPal" "A payment gateway for processing payments" {
-                    tags external
-                }
             }
+
             storageService = container "Storage Service" "A storage system for storing live streams and user data" {
 
             }
-            userService = container "User Service" "A web-based user interface for users to interact with the platform" {
-                userBackend = component "User Backend" "A backend component for handling user-related operations" {
 
+            userService = container "User Service" "A web-based user interface for users to interact with the platform" {
+                userBackend = component "User Backend" {
+                    description "A backend component for handling user-related operations like authentication, following and subscriptions"
+                    technology "Java"
                 }
                 userDb = component "User Database" "A database for storing user information" {
                     tags Database
@@ -61,6 +68,23 @@ workspace {
             }
         }
 
+        paypal = softwareSystem "PayPal" "A payment gateway for processing payments" {
+            paypalService = container "PayPal" "A payment gateway for processing payments" {
+                tags external
+            }
+        }
+
+        stripe = softwareSystem "Stripe" "A payment gateway for processing payments" {
+            stripeService = container "Stripe" "A payment gateway for processing payments" {
+                tags external
+            }
+        }
+
+        auth0 = softwareSystem "Auth0" "A user authentication and authorization service" {
+            autho0Service = container "Stripe" "A payment gateway for processing payments" {
+                tags external
+            }
+        }
 
         production = deploymentEnvironment "Production Environment" {
 
