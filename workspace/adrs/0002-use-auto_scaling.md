@@ -1,6 +1,6 @@
-# 2. Use Auto-scaling
+# 2. Use Auto-scaling for video processing
 
-Date: 2024-01-15
+Date: 2025-10-13
 
 ## Status
 
@@ -8,11 +8,11 @@ Accepted
 
 ## Context
 
-The system faces 'burst' traffic during conferences, requiring dynamic scaling to maintain performance.
+We require dynamic scaling of the video processors to handle adaptive bitrate and resolution requirements. This will ensure that the video processing service can handle varying loads efficiently.
 
 ## Decision
 
-The web application component will be deployed within an AWS Auto Scaling Group.
+The video processors component will be configured to use auto-scaling. This involves setting up scaling policies based on CPU usage and network traffic.
 
 ## Consequences
 

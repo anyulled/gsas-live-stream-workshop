@@ -1,6 +1,6 @@
 # 3. Use microservices
 
-Date: 2024-01-15
+Date: 2025-10-13
 
 ## Status
 
@@ -12,7 +12,7 @@ The system requires flexibility, scalability, and ease of maintenance. Microserv
 
 ## Decision
 
-The system will be structured as a collection of loosely coupled services (microservices), such as the web application, attendee system, voting system, branding system, etc.
+The system will be structured as a collection of loosely coupled services (microservices), such as the web application, video system, chat system, subscription system, etc.
 
 ## Consequences
 

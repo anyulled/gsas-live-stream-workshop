@@ -1,6 +1,6 @@
-# 5. Use Third-Parties for non-business critical parts
+# 5. Use Third-Parties payment service
 
-Date: 2024-01-15
+Date: 2025-10-13
 
 ## Status
 
@@ -12,7 +12,7 @@ Developing these systems in-house would be resource-intensive. Leveraging third-
 
 ## Decision
 
-The system will integrate with third-party services for the Call For Papers (CFP) system and the Customer Relationship Management (CRM) system.
+The system will integrate with third-party services for the payments system.
 
 ## Consequences
 

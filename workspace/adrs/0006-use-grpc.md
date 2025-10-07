@@ -1,6 +1,6 @@
 # 6. Use gRPC for microservice communication
 
-Date: 2024-01-16
+Date: 2025-10-13
 
 ## Status
 
@@ -8,7 +8,7 @@ Proposed
 
 ## Context
 
-The "Conference Kata" system is composed of multiple microservices (e.g., web application, attendee system, voting system, branding system). Efficient and reliable communication between these services is crucial for the overall performance and reliability of the system. gRPC, a high-performance, open-source universal RPC framework, is chosen for this purpose.
+The "music live-stream" platform is composed of multiple microservices (e.g., web application, video system, chat system, subscription system). Efficient and reliable communication between these services is crucial for the overall performance and reliability of the system. gRPC, a high-performance, open-source universal RPC framework, is chosen for this purpose.
 
 ## Decision
 

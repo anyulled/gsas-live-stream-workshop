@@ -1,6 +1,6 @@
-# 4. Use React for Web Interface
+# 4. Use Next.js for Web Interface
 
-Date: 2024-01-15
+Date: 2025-10-13
 
 ## Status
 
@@ -12,7 +12,7 @@ The need for a dynamic, responsive, and interactive user interface for conferenc
 
 ## Decision
 
-The website component of the web application will be implemented as a React SPA.
+The website component of the web application will be implemented as a Next.js application.
 
 ## Consequences
 

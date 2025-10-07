@@ -1,6 +1,6 @@
 # Live-stream platform
 
-## System design for SatageCast
+## System design for StageCast
 
 ### System Landscape
 ![Component View](workspace/.structurizr/images/Component-002-thumbnail.png)
