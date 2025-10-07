@@ -114,6 +114,112 @@ workspace {
         userBackend -> autho0Service "User authentication and authorization"
 
         production = deploymentEnvironment "Production Environment" {
+            serviceWest = deploymentGroup "Service instance 1"
+            deploymentNode "Amazon Web Services" {
+                tags "Amazon Web Services - Cloud Map"
+                deploymentNode "VPC" {
+                    tags "Amazon Web Services - Virtual private cloud VPC"
+
+                    apiGatewayInfra = infrastructureNode "API Gateway" {
+                        tags "Amazon Web Services - API Gateway"
+                    }
+                    cdn = infrastructureNode "AWS CDN" "Amazon CloudFront" {
+                        tags "Amazon Web Services - CloudFront"
+                    }
+                    kinesis = infrastructureNode "Kinesis" "Video streaming" {
+                        tags "Amazon Web Services - Kinesis Video Streams"
+                    }
+                    kinesisData = infrastructureNode "Kinesis Data Stream" "Data streaming" {
+                        tags "Amazon Web Services - Kinesis Data Streams"
+                    }
+                    fraudDetector = infrastructureNode "Fraud Detector" "Amazon Rekognition" {
+                        tags "Amazon Web Services - Fraud Detector"
+                    }
+                    rekognition = infrastructureNode "Rekognition" "spam filter system" {
+                        tags "Amazon Web Services - Rekognition"
+                    }
+                    s3 = infrastructureNode "Storage" "AWS - S3" {
+                        tags "Amazon Web Services - Simple Storage Service"
+                    }
+                    globalAccelerator = infrastructureNode "AWS Global Accelerator" "ensures users connect to the closest region" {
+                        tags "Amazon Web Services - Global Accelerator"
+                    }
+
+                    chatDatabase = infrastructureNode "Chat Database" "Amazon DynamoDB" {
+                        tags "Amazon Web Services - DynamoDB"
+                    }
+
+                    vodDatabase = infrastructureNode "VoD Database" "Amazon DynamoDB" {
+                        tags "Amazon Web Services - DynamoDB"
+                    }
+
+                    paymentsDatabase = infrastructureNode "Payments Database" "Amazon RDS" {
+                        tags "Amazon Web Services - RDS"
+                    }
+
+                    usersDatabase = infrastructureNode "Users Database" "Amazon RDS" {
+                        tags "Amazon Web Services - RDS"
+                    }
+
+                    deploymentNode "eu-west-2" {
+                        description "AWS - Europe Zone"
+                        technology "AWS"
+                        tags "Amazon Web Services - Region"
+
+                        deploymentNode "EC2 - User Service" {
+                            tags "Amazon Web Services - EC2"
+                                userInstance = containerInstance userService
+                        }
+                        userInstance -> cdn "Serves media"
+
+                        deploymentNode "EC2 - Web UI" {
+                            tags "Amazon Web Services - EC2"
+                            webInstance = containerInstance webUI
+                        }
+
+                        globalAccelerator -> webInstance "directing traffic to the nearest application endpoint"
+                        webInstance -> apiGatewayInfra "Access backend services"
+                        webInstance -> usersDatabase "Reads User Data"
+
+                        deploymentNode "EC2 - Stream Service" {
+                            tags "Amazon Web Services - EC2"
+                            streamInstance = containerInstance streamService
+                        }
+                        streamInstance -> s3 "Reads Videos"
+                        streamInstance -> kinesis "Reads Video Streams"
+                        streamInstance -> kinesisData "Reads Video Streams"
+
+                        deploymentNode "EC2 - VoD" {
+                            tags "Amazon Web Services - EC2"
+                            vodInstance = containerInstance videoOnDemandService
+                        }
+
+                        vodInstance -> vodDatabase "Reads VoD Data"
+                        vodInstance -> s3 "Reads Videos"
+
+                        deploymentNode "EC2 - Chat" {
+                            tags "Amazon Web Services - EC2"
+                            chatInstance = containerInstance chatService
+                        }
+                        chatInstance -> chatDatabase "Reads Chat Data"
+                        chatInstance -> rekognition "Analyzes Images"
+
+                        deploymentNode "EC2 - Payment" {
+                            tags "Amazon Web Services - EC2"
+                            paymentInstance = containerInstance paymentsService
+                        }
+                        paymentInstance -> paymentsDatabase "Reads Payment Data"
+                        paymentInstance -> fraudDetector "Checks for Fraud"
+
+                        deploymentNode "EC2 - Storage" {
+                            tags "Amazon Web Services - EC2"
+                            storageInstance = containerInstance storageService
+                        }
+
+                        storageInstance -> s3 "Uses Storage"
+                    }
+                }
+            }
 
         }
     }
@@ -123,6 +229,7 @@ workspace {
         themes https://static.structurizr.com/themes/amazon-web-services-2023.01.31/theme.json
         themes https://static.structurizr.com/themes/amazon-web-services-2022.04.30/theme.json
         themes https://static.structurizr.com/themes/amazon-web-services-2020.04.30/theme.json
+
 
         branding {
             logo images/gsas_logo.png

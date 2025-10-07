@@ -3,10 +3,10 @@
 ## System design for StageCast
 
 ### System Landscape
-![Component View](workspace/.structurizr/images/Component-002-thumbnail.png)
+![Component View](workspace/.structurizr/1/images/Component-002-thumbnail.png)
 
 ### Deployment view
-![Deployment view](workspace/.structurizr/images/Production-thumbnail.png)
+![Deployment view](workspace/.structurizr/1/images/Deployment-001-thumbnail.png)
 
 ## How to run this example
 
@@ -17,7 +17,7 @@ docker run --name structurizr --env=PORT=8080 --volume=$(pwd)/workspace:/usr/loc
 ```
 
 ## Links
-
+* [Structurizr](http://localhost:8888/)
 * [Documentation](http://localhost:8888/workspace/documentation)
 * [ADRs](http://localhost:8888/workspace/decisions)
 * [Diagrams](http://localhost:8888/workspace/explore)
