@@ -1,6 +1,6 @@
-# Conference Kata
+# Live-stream platform
 
-System design for [Conference Kata](https://nealford.com/katas/kata?id=AllStuffNoCruft)
+## System design for SatageCast
 
 ### System Landscape
 ![Component View](workspace/.structurizr/images/Component-002-thumbnail.png)
