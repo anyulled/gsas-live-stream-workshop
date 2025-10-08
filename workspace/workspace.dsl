@@ -20,7 +20,7 @@ workspace {
             }
 
             streamService = container "Live Stream" "A live video stream" {
-                videoStreamComponent = component "Video Stream Component" "A component for streaming live video" {
+                liveStreamProcessor = component "Video Stream Component" "A component for streaming live video" {
                 }
             }
 
@@ -58,7 +58,7 @@ workspace {
                 paymentComponent -> paymentsDb "stores payment information"
             }
 
-            storageService = container "Storage Service" "A storage system for storing live streams and user data" {
+            storageService = container "Storage Service" "A storage system for storing live streams chunks" {
 
             }
 
@@ -72,20 +72,24 @@ workspace {
                 userDb = component "User Database" "A database for storing user information" {
                     tags Database
                 }
+                authenticationAdapter = component "Authentication Adapter" "An adapter for integrating with external authentication services" {
+                }
 
+                userBackend -> authenticationAdapter "uses for authentication"
+                authenticationAdapter -> userBackend "provides authentication services"
                 userBackend -> userDb "read/writes user data"
             }
         }
 
         user -> webUI "interacts with"
         streamer -> webUI "broadcasts music sessions"
-        webUI -> videoStreamComponent "Obtain streaming sessions"
+        webUI -> liveStreamProcessor "Obtain streaming sessions"
         webUI -> videoOnDemandService "Get videos on demand"
         webUI -> chatComponent "Send and receive messages"
         webUI -> paymentComponent "Process payments"
         webUI -> userBackend "User-related operations"
 
-        videoStreamComponent -> storageService "Stores session videos"
+        liveStreamProcessor -> storageService "Stores session videos"
 
         paypal = softwareSystem "PayPal" "A payment gateway for processing payments" {
             tags external
@@ -106,12 +110,12 @@ workspace {
 
         auth0 = softwareSystem "Auth0" "A user authentication and authorization service" {
             tags external
-            autho0Service = container "Stripe" "A payment gateway for processing payments" {
+            autho0Service = container "Auth0" "A user authentication and authorization service" {
                 tags external
             }
         }
 
-        userBackend -> autho0Service "User authentication and authorization"
+        authenticationAdapter -> autho0Service "User authentication and authorization"
 
         production = deploymentEnvironment "Production Environment" {
             serviceWest = deploymentGroup "Service instance 1"
@@ -126,11 +130,8 @@ workspace {
                     cdn = infrastructureNode "AWS CDN" "Amazon CloudFront" {
                         tags "Amazon Web Services - CloudFront"
                     }
-                    kinesis = infrastructureNode "Kinesis" "Video streaming" {
-                        tags "Amazon Web Services - Kinesis Video Streams"
-                    }
-                    kinesisData = infrastructureNode "Kinesis Data Stream" "Data streaming" {
-                        tags "Amazon Web Services - Kinesis Data Streams"
+                    ivs = infrastructureNode "IVS" "Interactive Video Service" {
+                        tags "Amazon Web Services - Interactive Video Service"
                     }
                     fraudDetector = infrastructureNode "Fraud Detector" "Amazon Rekognition" {
                         tags "Amazon Web Services - Fraud Detector"
@@ -139,6 +140,9 @@ workspace {
                         tags "Amazon Web Services - Rekognition"
                     }
                     s3 = infrastructureNode "Storage" "AWS - S3" {
+                        tags "Amazon Web Services - Simple Storage Service"
+                    }
+                    s3ChunksBucket = infrastructureNode "Storage - Chunks" "AWS - S3 chunks" {
                         tags "Amazon Web Services - Simple Storage Service"
                     }
                     globalAccelerator = infrastructureNode "AWS Global Accelerator" "ensures users connect to the closest region" {
@@ -168,7 +172,7 @@ workspace {
 
                         deploymentNode "EC2 - User Service" {
                             tags "Amazon Web Services - EC2"
-                                userInstance = containerInstance userService
+                            userInstance = containerInstance userService
                         }
                         userInstance -> cdn "Serves media"
 
@@ -185,9 +189,8 @@ workspace {
                             tags "Amazon Web Services - EC2"
                             streamInstance = containerInstance streamService
                         }
-                        streamInstance -> s3 "Reads Videos"
-                        streamInstance -> kinesis "Reads Video Streams"
-                        streamInstance -> kinesisData "Reads Video Streams"
+                        streamInstance -> s3 "Writes Videos"
+                        streamInstance -> ivs "Reads Video Streams"
 
                         deploymentNode "EC2 - VoD" {
                             tags "Amazon Web Services - EC2"
@@ -195,7 +198,7 @@ workspace {
                         }
 
                         vodInstance -> vodDatabase "Reads VoD Data"
-                        vodInstance -> s3 "Reads Videos"
+                        vodInstance -> s3ChunksBucket "Reads Videos"
 
                         deploymentNode "EC2 - Chat" {
                             tags "Amazon Web Services - EC2"
@@ -211,6 +214,7 @@ workspace {
                         paymentInstance -> paymentsDatabase "Reads Payment Data"
                         paymentInstance -> fraudDetector "Checks for Fraud"
 
+
                         deploymentNode "EC2 - Storage" {
                             tags "Amazon Web Services - EC2"
                             storageInstance = containerInstance storageService
@@ -220,7 +224,23 @@ workspace {
                     }
                 }
             }
-
+            deploymentNode "External Services" {
+                stripeInfra = infrastructureNode "Stripe API" {
+                    description "Stripe SaaS payment API"
+                    tags "external"
+                }
+                payPalInfra = infrastructureNode "PayPal API" {
+                    description "PayPal SaaS payment API"
+                    tags "external"
+                }
+                auth0Infra = infrastructureNode "Auth0 API" {
+                    description "Auth0 SaaS authentication API"
+                    tags "external"
+                }
+            }
+            paymentInstance -> stripeInfra "Processes Payments"
+            paymentInstance -> payPalInfra "Processes Payments"
+            userInstance -> auth0Infra "Authenticates Users"
         }
     }
 
@@ -229,7 +249,6 @@ workspace {
         themes https://static.structurizr.com/themes/amazon-web-services-2023.01.31/theme.json
         themes https://static.structurizr.com/themes/amazon-web-services-2022.04.30/theme.json
         themes https://static.structurizr.com/themes/amazon-web-services-2020.04.30/theme.json
-
 
         branding {
             logo images/gsas_logo.png
@@ -253,6 +272,7 @@ workspace {
             }
             element "external" {
                 shape component
+                color #FFFFFF
                 background #000088
             }
             element "Database" {
