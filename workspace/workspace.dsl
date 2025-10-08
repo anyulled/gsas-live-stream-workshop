@@ -20,7 +20,7 @@ workspace {
             }
 
             streamService = container "Live Stream" "A live video stream" {
-                videoStreamComponent = component "Video Stream Component" "A component for streaming live video" {
+                liveStreamProcessor = component "Video Stream Component" "A component for streaming live video" {
                 }
             }
 
@@ -35,8 +35,8 @@ workspace {
                     tags Database
                 }
 
-                videoIngestionComponent -> videoChunksProcessor "processes video chunks"
-                videoChunksProcessor -> vodDb "stores video metadata"
+                videoIngestionComponent -> videoChunksProcessor "processes video chunks" "https" "http"
+                videoChunksProcessor -> vodDb "stores video metadata" "jdbc" "jdbc"
             }
 
             chatService = container "Chat Service" "A chat application for users to communicate with each other" {
@@ -45,7 +45,7 @@ workspace {
                 chatDb = component "Chat Database" "A database for storing chat messages" {
                     tags Database
                 }
-                chatComponent -> chatDb "stores chat messages"
+                chatComponent -> chatDb "stores chat messages" "jdbc" "jdbc"
             }
 
             paymentsService = container "Payments Service" "A payment processing system for streamers to receive donations and tips" {
@@ -55,14 +55,14 @@ workspace {
                 paymentsDb = component "Payments Database" "A database for storing payment information" postgres {
                     tags Database
                 }
-                paymentComponent -> paymentsDb "stores payment information"
+                paymentComponent -> paymentsDb "stores payment information" "jdbc" "jdbc"
             }
 
-            storageService = container "Storage Service" "A storage system for storing live streams and user data" {
+            storageService = container "Storage Service" "A storage system for storing live streams chunks" {
 
             }
 
-            videoChunksProcessor -> storageService "stores video chunks"
+            videoChunksProcessor -> storageService "stores video chunks" "https" "http"
 
             userService = container "User Service" "A web-based user interface for users to interact with the platform" {
                 userBackend = component "User Backend" {
@@ -72,20 +72,27 @@ workspace {
                 userDb = component "User Database" "A database for storing user information" {
                     tags Database
                 }
+                authenticationAdapter = component "Authentication Adapter" "An adapter for integrating with external authentication services" {
+                }
 
-                userBackend -> userDb "read/writes user data"
+                userBackend -> authenticationAdapter "uses for authentication" "https" "http"
+                authenticationAdapter -> userBackend "provides authentication services" "https" "http"
+                userBackend -> userDb "read/writes user data" "jdbc" "jdbc"
             }
         }
 
-        user -> webUI "interacts with"
-        streamer -> webUI "broadcasts music sessions"
-        webUI -> videoStreamComponent "Obtain streaming sessions"
-        webUI -> videoOnDemandService "Get videos on demand"
-        webUI -> chatComponent "Send and receive messages"
-        webUI -> paymentComponent "Process payments"
-        webUI -> userBackend "User-related operations"
+        user -> webUI "interacts with" "https" "http"
+        streamer -> webUI "broadcasts music sessions" "https" "http"
+        webUI -> liveStreamProcessor "Ingest streaming sessions" "RTMP" "RTMP"
+        webUI -> videoOnDemandService "Get videos on demand" "HLS" "HLS"
+        webUI -> chatComponent "Send and receive messages" "https" "http"
+        webUI -> paymentComponent "Process payments" "https" "http"
+        webUI -> userBackend "User-related operations" "https" "http"
+        chatService -> userService "Retrieves user information" "grpc" "grpc"
+        paymentsService -> userService "Retrieves user information" "grpc" "grpc"
+        streamService -> userService "Retrieves user information" "grpc" "grpc"
 
-        videoStreamComponent -> storageService "Stores session videos"
+        liveStreamProcessor -> storageService "Stores session videos" "RTMP" "RTMP"
 
         paypal = softwareSystem "PayPal" "A payment gateway for processing payments" {
             tags external
@@ -101,17 +108,17 @@ workspace {
             }
         }
 
-        paymentComponent -> paypalService "Process payments"
-        paymentComponent -> stripeService "Process payments"
+        paymentComponent -> paypalService "Process payments" "https" "http"
+        paymentComponent -> stripeService "Process payments" "https" "http"
 
         auth0 = softwareSystem "Auth0" "A user authentication and authorization service" {
             tags external
-            autho0Service = container "Stripe" "A payment gateway for processing payments" {
+            auth0Service = container "Auth0" "A user authentication and authorization service" {
                 tags external
             }
         }
 
-        userBackend -> autho0Service "User authentication and authorization"
+        authenticationAdapter -> auth0Service "User authentication and authorization" "https" "http"
 
         production = deploymentEnvironment "Production Environment" {
 
@@ -146,6 +153,7 @@ workspace {
             }
             element "external" {
                 shape component
+                color #FFFFFF
                 background #000088
             }
             element "Database" {
