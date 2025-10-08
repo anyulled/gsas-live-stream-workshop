@@ -88,6 +88,9 @@ workspace {
         webUI -> chatComponent "Send and receive messages"
         webUI -> paymentComponent "Process payments"
         webUI -> userBackend "User-related operations"
+        chatService -> userService "Retrieves user information"
+        paymentsService -> userService "Retrieves user information"
+        streamService -> userService "Retrieves user information"
 
         liveStreamProcessor -> storageService "Stores session videos"
 
