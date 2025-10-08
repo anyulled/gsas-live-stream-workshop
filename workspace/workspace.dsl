@@ -113,12 +113,12 @@ workspace {
 
         auth0 = softwareSystem "Auth0" "A user authentication and authorization service" {
             tags external
-            autho0Service = container "Auth0" "A user authentication and authorization service" {
+            auth0Service = container "Auth0" "A user authentication and authorization service" {
                 tags external
             }
         }
 
-        authenticationAdapter -> autho0Service "User authentication and authorization" "https" "http"
+        authenticationAdapter -> auth0Service "User authentication and authorization" "https" "http"
 
         production = deploymentEnvironment "Production Environment" {
             serviceWest = deploymentGroup "Service instance 1"
