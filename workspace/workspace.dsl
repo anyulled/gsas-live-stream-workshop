@@ -20,7 +20,7 @@ workspace {
             }
 
             streamService = container "Live Stream" "A live video stream" {
-                videoStreamComponent = component "Video Stream Component" "A component for streaming live video" {
+                liveStreamProcessor = component "Video Stream Component" "A component for streaming live video" {
                 }
             }
 
@@ -53,7 +53,7 @@ workspace {
                 }
             }
 
-            storageService = container "Storage Service" "A storage system for storing live streams and user data" {
+            storageService = container "Storage Service" "A storage system for storing live streams chunks" {
 
             }
 
@@ -120,6 +120,7 @@ workspace {
             }
             element "external" {
                 shape component
+                color #FFFFFF
                 background #000088
             }
             element "Database" {
