@@ -6,15 +6,15 @@ Date: 2025-10-13
 
 Proposed
 
-## Context
+### Context
 
 The "music live-stream" platform is composed of multiple microservices (e.g., web application, video system, chat system, subscription system). Efficient and reliable communication between these services is crucial for the overall performance and reliability of the system. gRPC, a high-performance, open-source universal RPC framework, is chosen for this purpose.
 
-## Decision
+### Decision
 
-The system will utilize gRPC for communication between microservices.
+The system will use gRPC for communication between microservices.
 
-## Consequences
+### Consequences
 
 ### Positive:
 * **Efficiency:** gRPC uses HTTP/2, which is more efficient than HTTP/1.1 used in typical REST APIs. It allows for lower latency and better resource utilization.
