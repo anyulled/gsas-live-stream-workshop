@@ -4,7 +4,7 @@ Date: 2025-10-13
 
 ## Status
 
-Superceded by [8. Use Microservices](0008-use-microservices.md))
+Superseded by [8. Use Microservices](0008-use-microservices.md)
 
 ### Context
 

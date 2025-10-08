@@ -1,6 +1,6 @@
 # 5. Use Third-Parties payment service
 
-Date: 2025-10-13
+Date: 2025-10-04
 
 ## Status
 
