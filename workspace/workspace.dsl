@@ -35,8 +35,8 @@ workspace {
                     tags Database
                 }
 
-                videoIngestionComponent -> videoChunksProcessor "processes video chunks"
-                videoChunksProcessor -> vodDb "stores video metadata"
+                videoIngestionComponent -> videoChunksProcessor "processes video chunks" "https" "http"
+                videoChunksProcessor -> vodDb "stores video metadata" "jdbc" "jdbc"
             }
 
             chatService = container "Chat Service" "A chat application for users to communicate with each other" {
@@ -45,7 +45,7 @@ workspace {
                 chatDb = component "Chat Database" "A database for storing chat messages" {
                     tags Database
                 }
-                chatComponent -> chatDb "stores chat messages"
+                chatComponent -> chatDb "stores chat messages" "jdbc" "jdbc"
             }
 
             paymentsService = container "Payments Service" "A payment processing system for streamers to receive donations and tips" {
@@ -55,14 +55,14 @@ workspace {
                 paymentsDb = component "Payments Database" "A database for storing payment information" postgres {
                     tags Database
                 }
-                paymentComponent -> paymentsDb "stores payment information"
+                paymentComponent -> paymentsDb "stores payment information" "jdbc" "jdbc"
             }
 
             storageService = container "Storage Service" "A storage system for storing live streams chunks" {
 
             }
 
-            videoChunksProcessor -> storageService "stores video chunks"
+            videoChunksProcessor -> storageService "stores video chunks" "https" "http"
 
             userService = container "User Service" "A web-based user interface for users to interact with the platform" {
                 userBackend = component "User Backend" {
@@ -75,24 +75,24 @@ workspace {
                 authenticationAdapter = component "Authentication Adapter" "An adapter for integrating with external authentication services" {
                 }
 
-                userBackend -> authenticationAdapter "uses for authentication"
-                authenticationAdapter -> userBackend "provides authentication services"
-                userBackend -> userDb "read/writes user data"
+                userBackend -> authenticationAdapter "uses for authentication" "https" "http"
+                authenticationAdapter -> userBackend "provides authentication services" "https" "http"
+                userBackend -> userDb "read/writes user data" "jdbc" "jdbc"
             }
         }
 
-        user -> webUI "interacts with"
-        streamer -> webUI "broadcasts music sessions"
-        webUI -> liveStreamProcessor "Obtain streaming sessions"
-        webUI -> videoOnDemandService "Get videos on demand"
-        webUI -> chatComponent "Send and receive messages"
-        webUI -> paymentComponent "Process payments"
-        webUI -> userBackend "User-related operations"
-        chatService -> userService "Retrieves user information"
-        paymentsService -> userService "Retrieves user information"
-        streamService -> userService "Retrieves user information"
+        user -> webUI "interacts with" "https" "http"
+        streamer -> webUI "broadcasts music sessions" "https" "http"
+        webUI -> liveStreamProcessor "Ingest streaming sessions" "RTMP" "RTMP"
+        webUI -> videoOnDemandService "Get videos on demand" "HLS" "HLS"
+        webUI -> chatComponent "Send and receive messages" "https" "http"
+        webUI -> paymentComponent "Process payments" "https" "http"
+        webUI -> userBackend "User-related operations" "https" "http"
+        chatService -> userService "Retrieves user information" "grpc" "grpc"
+        paymentsService -> userService "Retrieves user information" "grpc" "grpc"
+        streamService -> userService "Retrieves user information" "grpc" "grpc"
 
-        liveStreamProcessor -> storageService "Stores session videos"
+        liveStreamProcessor -> storageService "Stores session videos" "RTMP" "RTMP"
 
         paypal = softwareSystem "PayPal" "A payment gateway for processing payments" {
             tags external
@@ -108,8 +108,8 @@ workspace {
             }
         }
 
-        paymentComponent -> paypalService "Process payments"
-        paymentComponent -> stripeService "Process payments"
+        paymentComponent -> paypalService "Process payments" "https" "http"
+        paymentComponent -> stripeService "Process payments" "https" "http"
 
         auth0 = softwareSystem "Auth0" "A user authentication and authorization service" {
             tags external
@@ -118,7 +118,7 @@ workspace {
             }
         }
 
-        authenticationAdapter -> autho0Service "User authentication and authorization"
+        authenticationAdapter -> autho0Service "User authentication and authorization" "https" "http"
 
         production = deploymentEnvironment "Production Environment" {
             serviceWest = deploymentGroup "Service instance 1"
@@ -177,7 +177,7 @@ workspace {
                             tags "Amazon Web Services - EC2"
                             userInstance = containerInstance userService
                         }
-                        userInstance -> cdn "Serves media"
+                        userInstance -> cdn "Serves media" "https" "http"
 
                         deploymentNode "EC2 - Web UI" {
                             tags "Amazon Web Services - EC2"
@@ -185,37 +185,37 @@ workspace {
                         }
 
                         globalAccelerator -> webInstance "directing traffic to the nearest application endpoint"
-                        webInstance -> apiGatewayInfra "Access backend services"
-                        webInstance -> usersDatabase "Reads User Data"
+                        webInstance -> apiGatewayInfra "Access backend services" "https" "http"
+                        webInstance -> usersDatabase "Reads User Data" "jdbc" "jdbc"
 
                         deploymentNode "EC2 - Stream Service" {
                             tags "Amazon Web Services - EC2"
                             streamInstance = containerInstance streamService
                         }
-                        streamInstance -> s3 "Writes Videos"
-                        streamInstance -> ivs "Reads Video Streams"
+                        streamInstance -> s3 "Writes Videos" "https" "https"
+                        streamInstance -> ivs "Stores Video Streams" "RTMP" "RTMP"
 
                         deploymentNode "EC2 - VoD" {
                             tags "Amazon Web Services - EC2"
                             vodInstance = containerInstance videoOnDemandService
                         }
 
-                        vodInstance -> vodDatabase "Reads VoD Data"
-                        vodInstance -> s3ChunksBucket "Reads Videos"
+                        vodInstance -> vodDatabase "Reads VoD Data" "jdbc" "jdbc"
+                        vodInstance -> s3ChunksBucket "Reads Videos" "HLS" "HLS"
 
                         deploymentNode "EC2 - Chat" {
                             tags "Amazon Web Services - EC2"
                             chatInstance = containerInstance chatService
                         }
-                        chatInstance -> chatDatabase "Reads Chat Data"
-                        chatInstance -> rekognition "Analyzes Images"
+                        chatInstance -> chatDatabase "Reads Chat Data" "jdbc" "jdbc"
+                        chatInstance -> rekognition "Spam filter" "https" "http"
 
                         deploymentNode "EC2 - Payment" {
                             tags "Amazon Web Services - EC2"
                             paymentInstance = containerInstance paymentsService
                         }
-                        paymentInstance -> paymentsDatabase "Reads Payment Data"
-                        paymentInstance -> fraudDetector "Checks for Fraud"
+                        paymentInstance -> paymentsDatabase "Reads Payment Data" "jdbc" "jdbc"
+                        paymentInstance -> fraudDetector "Checks for Fraud" "https" "http"
 
 
                         deploymentNode "EC2 - Storage" {
@@ -223,7 +223,7 @@ workspace {
                             storageInstance = containerInstance storageService
                         }
 
-                        storageInstance -> s3 "Uses Storage"
+                        storageInstance -> s3 "Uses Storage" "https" "http"
                     }
                 }
             }
@@ -241,9 +241,9 @@ workspace {
                     tags "external"
                 }
             }
-            paymentInstance -> stripeInfra "Processes Payments"
-            paymentInstance -> payPalInfra "Processes Payments"
-            userInstance -> auth0Infra "Authenticates Users"
+            paymentInstance -> stripeInfra "Processes Payments" "https" "http"
+            paymentInstance -> payPalInfra "Processes Payments" "https" "http"
+            userInstance -> auth0Infra "Authenticates Users" "https" "http"
         }
     }
 
