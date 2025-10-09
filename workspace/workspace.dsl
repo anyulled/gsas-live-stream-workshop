@@ -15,6 +15,7 @@ workspace {
 
         liveStream = softwareSystem "Live Stream Platform" "A platform for musicians to broadcast and watch live video streams" {
             webUI = container "Web UI" {
+                tags "website"
                 description "A web-based user interface for users to watch live streams and interact with the platform"
                 technology "Next.js"
             }
@@ -24,7 +25,7 @@ workspace {
                 }
             }
 
-            videoOnDemandService = container "Video Ingestion Service" "A service for ingesting live video streams from streamers" {
+            videoOnDemandService = container "Video on Demand Service" "A service for ingesting live video streams from streamers" {
                 videoIngestionComponent = component "Video Ingestion Component" "A component for ingesting live video streams from streamers" {
 
                 }
@@ -59,7 +60,7 @@ workspace {
             }
 
             storageService = container "Storage Service" "A storage system for storing live streams chunks" {
-
+                tags "bucket"
             }
 
             videoChunksProcessor -> storageService "stores video chunks" "https" "http"
@@ -140,7 +141,10 @@ workspace {
             element "Container" {
                 shape roundedbox
             }
-
+            element "bucket" {
+                shape Pipe
+                background #D69813
+            }
             element "Database" {
                 shape cylinder
             }
@@ -151,6 +155,7 @@ workspace {
                 background #BB0000
                 opacity 75
             }
+
             element "external" {
                 shape component
                 color #FFFFFF
