@@ -25,7 +25,7 @@ workspace {
                 }
             }
 
-            videoOnDemandService = container "Video Ingestion Service" "A service for ingesting live video streams from streamers" {
+            videoOnDemandService = container "Video on Demand Service" "A service for ingesting live video streams from streamers" {
                 videoIngestionComponent = component "Video Ingestion Component" "A component for ingesting live video streams from streamers" {
 
                 }
@@ -270,7 +270,6 @@ workspace {
         container liveStream {
             title "Container view of StageCast"
             include *
-            autoLayout lr
         }
         # Requirements
         # 1 & 6. Users should be able to watch live streams
