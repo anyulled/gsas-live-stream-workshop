@@ -3,47 +3,75 @@
   "description" : "The software architecture of the StageCast platform.",
   "documentation" : {
     "decisions" : [ {
-      "content" : "# 1. Use Amazon Web Services\n\nDate: 2025-10-13\n\n## Status\n\nAccepted\n\n## Context\n\nThe system requires a robust, scalable, \nand secure cloud environment to handle varying loads, especially during peak conference times.\nAWS offers a comprehensive set of services that can fulfill these needs.\n\n## Decision\n\nWe will use AWS\n\n## Consequences\n\n* **Positive**: Scalability with services like EC2 Auto Scaling and Elastic Load Balancer; high availability and reliability; wide range of services for different needs (e.g., S3 for storage, RDS for databases).\n* **Negative**: Potential vendor lock-in; requires AWS-specific knowledge for maintenance and operation.",
-      "date" : "2025-10-13T00:00:00Z",
+      "content": "# 1. Use Amazon Web Services\n\nDate: 2025-08-01\n\n## Status\n\nAccepted\n\n### Context\n\nThe system requires a robust, scalable, \nand secure cloud environment to handle varying loads, especially during peak conference times.\nAWS offers a comprehensive set of services that can fulfill these needs.\n\n### Decision\n\nWe will use AWS\n\n### Consequences\n\n* **Positive**: Scalability with services like EC2 Auto Scaling and Elastic Load Balancer; high availability and reliability; wide range of services for different needs (e.g., S3 for storage, RDS for databases).\n* **Negative**: Potential vendor lock-in; requires AWS-specific knowledge for maintenance and operation.",
+      "date": "2025-08-01T00:00:00Z",
       "format" : "Markdown",
       "id" : "1",
       "status" : "Accepted",
       "title" : "Use Amazon Web Services"
     }, {
-      "content" : "# 2. Use Auto-scaling for video processing\n\nDate: 2025-10-13\n\n## Status\n\nAccepted\n\n## Context\n\nWe require dynamic scaling of the video processors to handle adaptive bitrate and resolution requirements. This will ensure that the video processing service can handle varying loads efficiently.\n\n## Decision\n\nThe video processors component will be configured to use auto-scaling. This involves setting up scaling policies based on CPU usage and network traffic.\n\n## Consequences\n\n* **Positive**: The system can automatically scale its resources to match the load, ensuring high availability and performance during peak traffic.\n* **Negative**: Additional complexity in monitoring and managing scaling policies; potential cost implications due to scaling.",
-      "date" : "2025-10-13T00:00:00Z",
+      "content": "# 2. Use Auto-scaling for video processing\n\nDate: 2025-09-02\n\n## Status\n\nAccepted\n\n### Context\n\nWe require dynamic scaling of the video processors to handle adaptive bitrate and resolution requirements. This will ensure that the video processing service can handle varying loads efficiently.\n\n### Decision\n\nThe video processors component will be configured to use auto-scaling. This involves setting up scaling policies based on CPU usage and network traffic.\n\n### Consequences\n\n* **Positive**: The system can automatically scale its resources to match the load, ensuring high availability and performance during peak traffic.\n* **Negative**: Additional complexity in monitoring and managing scaling policies; potential cost implications due to scaling.",
+      "date": "2025-09-02T00:00:00Z",
       "format" : "Markdown",
       "id" : "2",
       "status" : "Accepted",
       "title" : "Use Auto-scaling for video processing"
     }, {
-      "content" : "# 3. Use microservices\n\nDate: 2025-10-13\n\n## Status\n\nAccepted\n\n## Context\n\nThe system requires flexibility, scalability, and ease of maintenance. Microservices architecture allows individual components to be developed, deployed, and scaled independently.\n\n## Decision\n\nThe system will be structured as a collection of loosely coupled services (microservices), such as the web application, video system, chat system, subscription system, etc.\n\n## Consequences\n\n* **Positive**: Improved scalability and maintainability; each service can be deployed independently; easier to implement different technologies per service as needed.\n* **Negative**: Increased complexity in service coordination and communication; potential challenges in distributed data management.",
-      "date" : "2025-10-13T00:00:00Z",
+      "content": "# 3. Use monolithic architecture\n\nDate: 2025-09-03\n\n## Status\n\nSuperseded by [8. Use Microservices](#8)\n\n### Context\n\nThe system is designed to handle various functionalities such as user management, content creation, real-time communication, and subscription management. Each of these functionalities can be developed and deployed as a Monolith service.\n\n### Decision\n\nWe will use a monolithic architecture for the system. This means that all functionalities will be developed and deployed as a single, unified application. This approach simplifies deployment and management but may limit scalability and maintainability in the long run.\n\n### Consequences\n\n **Pros:** low cognitive load\n ** Cons:**:** Hard to escale",
+      "date": "2025-09-03T00:00:00Z",
       "format" : "Markdown",
       "id" : "3",
-      "status" : "Accepted",
-      "title" : "Use microservices"
+      "links": [
+        {
+          "description": "Superseded by",
+          "id": "8"
+        }
+      ],
+      "status": "Superseded",
+      "title": "Use monolithic architecture"
     }, {
-      "content" : "# 4. Use Next.js for Web Interface\n\nDate: 2025-10-13\n\n## Status\n\nAccepted\n\n## Context\n\nThe need for a dynamic, responsive, and interactive user interface for conference attendees.\n\n## Decision\n\nThe website component of the web application will be implemented as a Next.js application.\n\n## Consequences\n\n* **Positive**: Enhanced user experience with fast, responsive interfaces; easier to manage state and UI updates on the client side.\n* **Negative**: Potential for initial load performance issues; reliance on client-side JavaScript can affect users with JavaScript disabled.",
-      "date" : "2025-10-13T00:00:00Z",
+      "content": "# 4. Use Next.js for Web Interface\n\nDate: 2025-09-04\n\n## Status\n\nAccepted\n\n### Context\n\nThe need for a dynamic, responsive, and interactive user interface for conference attendees.\n\n### Decision\n\nThe website component of the web application will be implemented as a Next.js application.\n\n### Consequences\n\n* **Positive**: Enhanced user experience with fast, responsive interfaces; easier to manage state and UI updates on the client side.\n* **Negative**: Potential for initial load performance issues; reliance on client-side JavaScript can affect users with JavaScript disabled.",
+      "date": "2025-09-04T00:00:00Z",
       "format" : "Markdown",
       "id" : "4",
       "status" : "Accepted",
       "title" : "Use Next.js for Web Interface"
     }, {
-      "content" : "# 5. Use Third-Parties payment service\n\nDate: 2025-10-13\n\n## Status\n\nAccepted\n\n## Context\n\nDeveloping these systems in-house would be resource-intensive. Leveraging third-party services can save time and provide specialized functionality.\n\n## Decision\n\nThe system will integrate with third-party services for the payments system.\n\n## Consequences\n\n* **Positive**: Access to established, feature-rich systems; reduced development time and cost.\n* **Negative**: Dependency on external vendors; limitations based on the capabilities and constraints of the third-party systems.",
-      "date" : "2025-10-13T00:00:00Z",
+      "content": "# 5. Use Third-Parties payment service\n\nDate: 2025-10-04\n\n## Status\n\nAccepted\n\n### Context\n\nDeveloping these systems in-house would be resource-intensive. Leveraging third-party services can save time and provide specialized functionality.\n\n### Decision\n\nThe system will integrate with third-party services for the payments system.\n\n### Consequences\n\n* **Positive**: Access to established, feature-rich systems; reduced development time and cost.\n* **Negative**: Dependency on external vendors; limitations based on the capabilities and constraints of the third-party systems.",
+      "date": "2025-10-04T00:00:00Z",
       "format" : "Markdown",
       "id" : "5",
       "status" : "Accepted",
       "title" : "Use Third-Parties payment service"
     }, {
-      "content" : "# 6. Use gRPC for microservice communication\n\nDate: 2025-10-13\n\n## Status\n\nProposed\n\n## Context\n\nThe \"music live-stream\" platform is composed of multiple microservices (e.g., web application, video system, chat system, subscription system). Efficient and reliable communication between these services is crucial for the overall performance and reliability of the system. gRPC, a high-performance, open-source universal RPC framework, is chosen for this purpose.\n\n## Decision\n\nThe system will utilize gRPC for communication between microservices.\n\n## Consequences\n\n### Positive:\n* **Efficiency:** gRPC uses HTTP/2, which is more efficient than HTTP/1.1 used in typical REST APIs. It allows for lower latency and better resource utilization.\n* **Contract-First API Development:** Using Protocol Buffers (protobuf), gRPC ensures strong API contracts, which can enhance the maintainability and clarity of service interfaces.\n* **Language Agnostic:** gRPC supports multiple programming languages, allowing flexibility in microservices development.\n* **Streaming Capabilities:** gRPC supports bidirectional streaming, which can be beneficial for real-time data exchange scenarios.\n\n### Negative:\n* **Complexity:** Implementing gRPC can be more complex compared to RESTful services, especially for developers unfamiliar with RPC frameworks.\n* **Limited Browser Support:** Direct browser-to-service communication is not as straightforward as with traditional REST APIs, potentially requiring additional components like a gRPC-Web proxy.\n* **Operational Overhead:** Monitoring and debugging gRPC services may require additional tooling compared to REST APIs.\n* **Less Human-Readable:** Unlike JSON over REST, protobuf is not human-readable, which can make manual testing and debugging more challenging.\n",
-      "date" : "2025-10-13T00:00:00Z",
+      "content": "# 6. Use gRPC for microservice communication\n\nDate: 2025-10-05\n\n## Status\n\nProposed\n\n### Context\n\nThe \"music live-stream\" platform is composed of multiple microservices (e.g., web application, video system, chat system, subscription system). Efficient and reliable communication between these services is crucial for the overall performance and reliability of the system. gRPC, a high-performance, open-source universal RPC framework, is chosen for this purpose.\n\n### Decision\n\nThe system will use gRPC for communication between microservices.\n\n### Consequences\n\n### Positive:\n* **Efficiency:** gRPC uses HTTP/2, which is more efficient than HTTP/1.1 used in typical REST APIs. It allows for lower latency and better resource utilization.\n* **Contract-First API Development:** Using Protocol Buffers (protobuf), gRPC ensures strong API contracts, which can enhance the maintainability and clarity of service interfaces.\n* **Language Agnostic:** gRPC supports multiple programming languages, allowing flexibility in microservices development.\n* **Streaming Capabilities:** gRPC supports bidirectional streaming, which can be beneficial for real-time data exchange scenarios.\n\n### Negative:\n* **Complexity:** Implementing gRPC can be more complex compared to RESTful services, especially for developers unfamiliar with RPC frameworks.\n* **Limited Browser Support:** Direct browser-to-service communication is not as straightforward as with traditional REST APIs, potentially requiring additional components like a gRPC-Web proxy.\n* **Operational Overhead:** Monitoring and debugging gRPC services may require additional tooling compared to REST APIs.\n* **Less Human-Readable:** Unlike JSON over REST, protobuf is not human-readable, which can make manual testing and debugging more challenging.\n",
+      "date": "2025-10-05T00:00:00Z",
       "format" : "Markdown",
       "id" : "6",
       "status" : "Proposed",
       "title" : "Use gRPC for microservice communication"
+    },
+      {
+        "content": "# 7. Use Auth0 for authentication \n\nDate: 2025-10-06\n## Status\n\nAccepted\n\n### Context\n\n**StageCast** requires externalized authentication as part of its MVP. This includes:\n\n* Viewer and streamer login and registration\n* Secure token issuance and validation\n* Role-based access control (e.g., VIP streamers)\n* Integration with frontend (WebApp) and backend API\n\nWe evaluated the following options:\n\n1. Amazon Cognito\n\n    * Fully managed and integrated with AWS\n    * Low cost, especially in early stages\n    * Difficult to customize login flows and UI\n    * Debugging and configuration are opaque\n\n2. Auth0\n   * Hosted identity platform with rich feature set\n   * Easy integration with SDKs and OIDC support\n   * Supports social login, custom rules, branding\n   * Excellent documentation and developer UX\n   * SaaS pricing may increase with scale\n\n3. Keycloak\n   * Open source, customizable, no vendor lock-in\n   * Strong support for enterprise protocols\n   * High operational burden for self-hosting\n   * Requires DevOps capacity we don’t currently have\n\n### Decision\n\nWe will use Auth0 for authentication in the MVP.\n\n* It enables rapid delivery with low effort\n* It provides secure, standards-compliant authentication\n* It integrates well with AWS-based infrastructure\n* It reduces operational overhead for the team\n* It allows us to iterate quickly on login flows and auth rules\n\n### Consequences\n\n* We rely on a SaaS provider for identity, introducing potential vendor lock-in\n* Monthly costs may rise with user volume and features\n* Migration to self-hosted solutions (e.g., Keycloak) may require effort later\n* We must design an abstraction (Auth Adapter) so the backend is loosely coupled to Auth0 APIs\n\n### Next Steps\n\n1. Implement Auth0 tenant and user pool configuration\n2. Integrate with WebApp for login/logout and callback handling\n3. Implement token validation and role extraction in the Backend API\n4. Capture usage metrics and monitor SaaS limits",
+        "date": "2025-10-06T00:00:00Z",
+        "format": "Markdown",
+        "id": "7",
+        "status": "Accepted",
+        "title": "Use Auth0 for authentication "
+      },
+      {
+        "content": "# 3. Use microservice architecture\n\nDate: 2025-10-15\n\n## Status\n\nAccepted\n\nSupersedes [3. Use monolithic architecture](#3)\n\n### Context\n\nThe system requires flexibility, scalability, and ease of maintenance. Microservices architecture allows individual components to be developed, deployed, and scaled independently.\n\n### Decision\n\nThe system will be structured as a collection of loosely coupled services (microservices), such as the web application, video system, chat system, subscription system, etc.\n\n### Consequences\n\n* **Positive**: Improved scalability and maintainability; each service can be deployed independently; easier to implement different technologies per service as needed.\n* **Negative**: Increased complexity in service coordination and communication; potential challenges in distributed data management.",
+        "date": "2025-10-15T00:00:00Z",
+        "format": "Markdown",
+        "id": "8",
+        "links": [
+          {
+            "description": "Supersedes",
+            "id": "3"
+          }
+        ],
+        "status": "Accepted",
+        "title": "Use microservice architecture"
     } ],
     "sections" : [ {
       "content" : "## Requirements\n**StageCast** is a live-streaming platform that allows musicians to:\n* Stream content.\n* Watch live streams with real-time chat.\n* Follow and subscribe to streamers.\n* Monetize through ads, donations, and subscriptions.\n* Store VoDs (Video On Demand) for replay.\n\n### Users\nHundreds of musicians, dozens of event staff, thousands of attendees\n\n### Requirements\n* Streamers should be able to start live broadcasts\n* Users should be able to watch live streams\n* Users should be able to chat in real-time\n* Users should be able to follow and subscribe to streamers\n* Monetization options for streamers\n* VoD storage and playback\n\n### Additional Context\n\n* **Live Streaming Service**: Handles video ingestion and real-time delivery\n* **Content Delivery Network (CDN)**: Distributes live video streams efficiently\n* **Chat Service**: Provides real-time interactions using Web Sockets\n* **User Management & Authentication**: Handles login, subscriptions, and payments\n* **Payments Service**: Processes donations, ad revenue, and subscriptions\n* **Video Storage & VoD Service**: Stores past streams for replay\n* **Recommendation Engine**: Suggests streams based on user activity",
@@ -67,7 +95,7 @@
   },
   "id" : 1,
   "lastModifiedAgent" : "structurizr-ui",
-  "lastModifiedDate" : "2025-10-07T15:38:33Z",
+  "lastModifiedDate": "2025-10-09T14:15:54Z",
   "model" : {
     "people" : [ {
       "description" : "Watches live streams and interacts with the platform",
@@ -97,7 +125,7 @@
         "properties" : {
           "structurizr.dsl.identifier" : "webui"
         },
-        "tags" : "Element,Container",
+        "tags": "Element,Container,website",
         "technology" : "Next.js"
       }, {
         "components" : [ {
@@ -106,7 +134,7 @@
           "id" : "6",
           "name" : "Video Stream Component",
           "properties" : {
-            "structurizr.dsl.identifier" : "videostreamcomponent"
+            "structurizr.dsl.identifier": "livestreamprocessor"
           },
           "tags" : "Element,Component"
         } ],
@@ -137,20 +165,30 @@
             "structurizr.dsl.identifier" : "videochunksprocessor"
           },
           "tags" : "Element,Component"
+        },
+          {
+            "description": "A database for storing video on demand content",
+            "documentation": {},
+            "id": "10",
+            "name": "Video On Demand Database",
+            "properties": {
+              "structurizr.dsl.identifier": "voddb"
+            },
+            "tags": "Element,Component,Database"
         } ],
         "description" : "A service for ingesting live video streams from streamers",
         "documentation" : { },
         "id" : "7",
-        "name" : "Video Ingestion Service",
+        "name": "Video on Demand Service",
         "properties" : {
-          "structurizr.dsl.identifier" : "videoingestionservice"
+          "structurizr.dsl.identifier": "videoondemandservice"
         },
         "tags" : "Element,Container"
       }, {
         "components" : [ {
           "description" : "A chat component for users to communicate with each other",
           "documentation" : { },
-          "id" : "11",
+          "id": "12",
           "name" : "Chat Component",
           "properties" : {
             "structurizr.dsl.identifier" : "chatcomponent"
@@ -159,7 +197,7 @@
         }, {
           "description" : "A database for storing chat messages",
           "documentation" : { },
-          "id" : "12",
+          "id": "13",
           "name" : "Chat Database",
           "properties" : {
             "structurizr.dsl.identifier" : "chatdb"
@@ -168,7 +206,7 @@
         } ],
         "description" : "A chat application for users to communicate with each other",
         "documentation" : { },
-        "id" : "10",
+        "id": "11",
         "name" : "Chat Service",
         "properties" : {
           "structurizr.dsl.identifier" : "chatservice"
@@ -178,7 +216,7 @@
         "components" : [ {
           "description" : "A component for processing payments",
           "documentation" : { },
-          "id" : "14",
+          "id": "15",
           "name" : "Payment Component",
           "properties" : {
             "structurizr.dsl.identifier" : "paymentcomponent"
@@ -188,62 +226,46 @@
         }, {
           "description" : "A database for storing payment information",
           "documentation" : { },
-          "id" : "15",
+          "id": "16",
           "name" : "Payments Database",
           "properties" : {
             "structurizr.dsl.identifier" : "paymentsdb"
           },
-          "tags" : "Element,Component,Database"
-        }, {
-          "description" : "A payment gateway for processing payments",
-          "documentation" : { },
-          "id" : "16",
-          "name" : "Stripe",
-          "properties" : {
-            "structurizr.dsl.identifier" : "stripe"
-          },
-          "tags" : "Element,Component,external"
-        }, {
-          "description" : "A payment gateway for processing payments",
-          "documentation" : { },
-          "id" : "17",
-          "name" : "PayPal",
-          "properties" : {
-            "structurizr.dsl.identifier" : "paypal"
-          },
-          "tags" : "Element,Component,external"
+          "tags": "Element,Component,Database",
+          "technology": "postgres"
         } ],
         "description" : "A payment processing system for streamers to receive donations and tips",
         "documentation" : { },
-        "id" : "13",
+        "id": "14",
         "name" : "Payments Service",
         "properties" : {
           "structurizr.dsl.identifier" : "paymentsservice"
         },
         "tags" : "Element,Container"
       }, {
-        "description" : "A storage system for storing live streams and user data",
+        "description": "A storage system for storing live streams chunks",
         "documentation" : { },
-        "id" : "18",
+        "id": "17",
         "name" : "Storage Service",
         "properties" : {
           "structurizr.dsl.identifier" : "storageservice"
         },
-        "tags" : "Element,Container"
+        "tags": "Element,Container,bucket"
       }, {
         "components" : [ {
-          "description" : "A backend component for handling user-related operations",
+          "description": "A backend component for handling user-related operations like authentication, following and subscriptions",
           "documentation" : { },
-          "id" : "20",
+          "id": "19",
           "name" : "User Backend",
           "properties" : {
             "structurizr.dsl.identifier" : "userbackend"
           },
-          "tags" : "Element,Component"
+          "tags": "Element,Component",
+          "technology": "Java"
         }, {
           "description" : "A database for storing user information",
           "documentation" : { },
-          "id" : "21",
+          "id": "20",
           "name" : "User Database",
           "properties" : {
             "structurizr.dsl.identifier" : "userdb"
@@ -252,7 +274,7 @@
         } ],
         "description" : "A web-based user interface for users to interact with the platform",
         "documentation" : { },
-        "id" : "19",
+        "id": "18",
         "name" : "User Service",
         "properties" : {
           "structurizr.dsl.identifier" : "userservice"
@@ -268,11 +290,80 @@
         "structurizr.dsl.identifier" : "livestream"
       },
       "tags" : "Element,Software System"
+    },
+      {
+        "containers": [
+          {
+            "description": "A payment gateway for processing payments",
+            "documentation": {},
+            "id": "22",
+            "name": "PayPal",
+            "properties": {
+              "structurizr.dsl.identifier": "paypalservice"
+            },
+            "tags": "Element,Container,external"
+          }
+        ],
+        "description": "A payment gateway for processing payments",
+        "documentation": {},
+        "id": "21",
+        "location": "Unspecified",
+        "name": "PayPal",
+        "properties": {
+          "structurizr.dsl.identifier": "paypal"
+        },
+        "tags": "Element,Software System,external"
+      },
+      {
+        "containers": [
+          {
+            "description": "A payment gateway for processing payments",
+            "documentation": {},
+            "id": "24",
+            "name": "Stripe",
+            "properties": {
+              "structurizr.dsl.identifier": "stripeservice"
+            },
+            "tags": "Element,Container,external"
+          }
+        ],
+        "description": "A payment gateway for processing payments",
+        "documentation": {},
+        "id": "23",
+        "location": "Unspecified",
+        "name": "Stripe",
+        "properties": {
+          "structurizr.dsl.identifier": "stripe"
+        },
+        "tags": "Element,Software System,external"
+      },
+      {
+        "containers": [
+          {
+            "description": "A user authentication and authorization service",
+            "documentation": {},
+            "id": "26",
+            "name": "Auth0",
+            "properties": {
+              "structurizr.dsl.identifier": "auth0service"
+            },
+            "tags": "Element,Container,external"
+          }
+        ],
+        "description": "A user authentication and authorization service",
+        "documentation": {},
+        "id": "25",
+        "location": "Unspecified",
+        "name": "Auth0",
+        "properties": {
+          "structurizr.dsl.identifier": "auth0"
+        },
+        "tags": "Element,Software System,external"
     } ]
   },
   "name" : "Live-stream platform for musicians",
   "properties" : {
-    "structurizr.dsl" : "d29ya3NwYWNlIHsKICAgIG5hbWUgIkxpdmUtc3RyZWFtIHBsYXRmb3JtIGZvciBtdXNpY2lhbnMiCiAgICBkZXNjcmlwdGlvbiAiVGhlIHNvZnR3YXJlIGFyY2hpdGVjdHVyZSBvZiB0aGUgU3RhZ2VDYXN0IHBsYXRmb3JtLiIKCiAgICAhYWRycyBhZHJzCiAgICAhZG9jcyBkb2NzCgogICAgbW9kZWwgewogICAgICAgIHVzZXIgPSBwZXJzb24gIlVzZXIiICJXYXRjaGVzIGxpdmUgc3RyZWFtcyBhbmQgaW50ZXJhY3RzIHdpdGggdGhlIHBsYXRmb3JtIiB7CiAgICAgICAgICAgIHRhZ3Mgdmlld2VyCiAgICAgICAgfQogICAgICAgIHN0cmVhbWVyID0gcGVyc29uICJTdHJlYW1lciIgIkJyb2FkY2FzdHMgbGl2ZSB2aWRlbyBzdHJlYW1zIiB7CiAgICAgICAgICAgIHRhZ3Mgc3RyZWFtZXIKICAgICAgICB9CgogICAgICAgIGxpdmVTdHJlYW0gPSBzb2Z0d2FyZVN5c3RlbSAiTGl2ZSBTdHJlYW0gUGxhdGZvcm0iICJBIHBsYXRmb3JtIGZvciBtdXNpY2lhbnMgdG8gYnJvYWRjYXN0IGFuZCB3YXRjaCBsaXZlIHZpZGVvIHN0cmVhbXMiIHsKICAgICAgICAgICAgd2ViVUkgPSBjb250YWluZXIgIldlYiBVSSIgewogICAgICAgICAgICAgICAgZGVzY3JpcHRpb24gIkEgd2ViLWJhc2VkIHVzZXIgaW50ZXJmYWNlIGZvciB1c2VycyB0byB3YXRjaCBsaXZlIHN0cmVhbXMgYW5kIGludGVyYWN0IHdpdGggdGhlIHBsYXRmb3JtIgogICAgICAgICAgICAgICAgdGVjaG5vbG9neSAiTmV4dC5qcyIKICAgICAgICAgICAgfQoKICAgICAgICAgICAgc3RyZWFtU2VydmljZSA9IGNvbnRhaW5lciAiTGl2ZSBTdHJlYW0iICJBIGxpdmUgdmlkZW8gc3RyZWFtIiB7CiAgICAgICAgICAgICAgICB2aWRlb1N0cmVhbUNvbXBvbmVudCA9IGNvbXBvbmVudCAiVmlkZW8gU3RyZWFtIENvbXBvbmVudCIgIkEgY29tcG9uZW50IGZvciBzdHJlYW1pbmcgbGl2ZSB2aWRlbyIgewogICAgICAgICAgICAgICAgfQogICAgICAgICAgICB9CiAgICAgICAgICAgIHZpZGVvSW5nZXN0aW9uU2VydmljZSA9IGNvbnRhaW5lciAiVmlkZW8gSW5nZXN0aW9uIFNlcnZpY2UiICJBIHNlcnZpY2UgZm9yIGluZ2VzdGluZyBsaXZlIHZpZGVvIHN0cmVhbXMgZnJvbSBzdHJlYW1lcnMiIHsKICAgICAgICAgICAgICAgIHZpZGVvSW5nZXN0aW9uQ29tcG9uZW50ID0gY29tcG9uZW50ICJWaWRlbyBJbmdlc3Rpb24gQ29tcG9uZW50IiAiQSBjb21wb25lbnQgZm9yIGluZ2VzdGluZyBsaXZlIHZpZGVvIHN0cmVhbXMgZnJvbSBzdHJlYW1lcnMiIHsKCiAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICB2aWRlb0NodW5rc1Byb2Nlc3NvciA9IGNvbXBvbmVudCAiVmlkZW8gQ2h1bmtzIFByb2Nlc3NvciIgIkEgY29tcG9uZW50IGZvciBwcm9jZXNzaW5nIHZpZGVvIGNodW5rcyIgewoKICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgfQogICAgICAgICAgICBjaGF0U2VydmljZSA9IGNvbnRhaW5lciAiQ2hhdCBTZXJ2aWNlIiAiQSBjaGF0IGFwcGxpY2F0aW9uIGZvciB1c2VycyB0byBjb21tdW5pY2F0ZSB3aXRoIGVhY2ggb3RoZXIiIHsKICAgICAgICAgICAgICAgIGNoYXRDb21wb25lbnQgPSBjb21wb25lbnQgIkNoYXQgQ29tcG9uZW50IiAiQSBjaGF0IGNvbXBvbmVudCBmb3IgdXNlcnMgdG8gY29tbXVuaWNhdGUgd2l0aCBlYWNoIG90aGVyIiB7CgogICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgY2hhdERiID0gY29tcG9uZW50ICJDaGF0IERhdGFiYXNlIiAiQSBkYXRhYmFzZSBmb3Igc3RvcmluZyBjaGF0IG1lc3NhZ2VzIiB7CiAgICAgICAgICAgICAgICAgICAgdGFncyBEYXRhYmFzZQogICAgICAgICAgICAgICAgfQogICAgICAgICAgICB9CiAgICAgICAgICAgIHBheW1lbnRzU2VydmljZSA9IGNvbnRhaW5lciAiUGF5bWVudHMgU2VydmljZSIgIkEgcGF5bWVudCBwcm9jZXNzaW5nIHN5c3RlbSBmb3Igc3RyZWFtZXJzIHRvIHJlY2VpdmUgZG9uYXRpb25zIGFuZCB0aXBzIiB7CiAgICAgICAgICAgICAgICBwYXltZW50Q29tcG9uZW50ID0gY29tcG9uZW50ICJQYXltZW50IENvbXBvbmVudCIgIkEgY29tcG9uZW50IGZvciBwcm9jZXNzaW5nIHBheW1lbnRzIiBqYXZhIHNwcmluZyB7CgogICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgcGF5bWVudHNEYiA9IGNvbXBvbmVudCAiUGF5bWVudHMgRGF0YWJhc2UiICJBIGRhdGFiYXNlIGZvciBzdG9yaW5nIHBheW1lbnQgaW5mb3JtYXRpb24iIHsKICAgICAgICAgICAgICAgICAgICB0YWdzIERhdGFiYXNlCiAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICBzdHJpcGUgPSBjb21wb25lbnQgIlN0cmlwZSIgIkEgcGF5bWVudCBnYXRld2F5IGZvciBwcm9jZXNzaW5nIHBheW1lbnRzIiB7CiAgICAgICAgICAgICAgICAgICAgdGFncyBleHRlcm5hbAogICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgcGF5cGFsID0gY29tcG9uZW50ICJQYXlQYWwiICJBIHBheW1lbnQgZ2F0ZXdheSBmb3IgcHJvY2Vzc2luZyBwYXltZW50cyIgewogICAgICAgICAgICAgICAgICAgIHRhZ3MgZXh0ZXJuYWwKICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgfQogICAgICAgICAgICBzdG9yYWdlU2VydmljZSA9IGNvbnRhaW5lciAiU3RvcmFnZSBTZXJ2aWNlIiAiQSBzdG9yYWdlIHN5c3RlbSBmb3Igc3RvcmluZyBsaXZlIHN0cmVhbXMgYW5kIHVzZXIgZGF0YSIgewoKICAgICAgICAgICAgfQogICAgICAgICAgICB1c2VyU2VydmljZSA9IGNvbnRhaW5lciAiVXNlciBTZXJ2aWNlIiAiQSB3ZWItYmFzZWQgdXNlciBpbnRlcmZhY2UgZm9yIHVzZXJzIHRvIGludGVyYWN0IHdpdGggdGhlIHBsYXRmb3JtIiB7CiAgICAgICAgICAgICAgICB1c2VyQmFja2VuZCA9IGNvbXBvbmVudCAiVXNlciBCYWNrZW5kIiAiQSBiYWNrZW5kIGNvbXBvbmVudCBmb3IgaGFuZGxpbmcgdXNlci1yZWxhdGVkIG9wZXJhdGlvbnMiIHsKCiAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICB1c2VyRGIgPSBjb21wb25lbnQgIlVzZXIgRGF0YWJhc2UiICJBIGRhdGFiYXNlIGZvciBzdG9yaW5nIHVzZXIgaW5mb3JtYXRpb24iIHsKICAgICAgICAgICAgICAgICAgICB0YWdzIERhdGFiYXNlCiAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgIH0KICAgICAgICB9CgoKICAgICAgICBwcm9kdWN0aW9uID0gZGVwbG95bWVudEVudmlyb25tZW50ICJQcm9kdWN0aW9uIEVudmlyb25tZW50IiB7CgogICAgICAgIH0KICAgIH0KCiAgICB2aWV3cyB7CiAgICAgICAgdGhlbWUgZGVmYXVsdAogICAgICAgIHRoZW1lcyBodHRwczovL3N0YXRpYy5zdHJ1Y3R1cml6ci5jb20vdGhlbWVzL2FtYXpvbi13ZWItc2VydmljZXMtMjAyMy4wMS4zMS90aGVtZS5qc29uCiAgICAgICAgdGhlbWVzIGh0dHBzOi8vc3RhdGljLnN0cnVjdHVyaXpyLmNvbS90aGVtZXMvYW1hem9uLXdlYi1zZXJ2aWNlcy0yMDIyLjA0LjMwL3RoZW1lLmpzb24KICAgICAgICB0aGVtZXMgaHR0cHM6Ly9zdGF0aWMuc3RydWN0dXJpenIuY29tL3RoZW1lcy9hbWF6b24td2ViLXNlcnZpY2VzLTIwMjAuMDQuMzAvdGhlbWUuanNvbgoKCiAgICAgICAgYnJhbmRpbmcgewogICAgICAgICAgICBsb2dvIGltYWdlcy9nc2FzX2xvZ28ucG5nCiAgICAgICAgfQoKICAgICAgICBzdHlsZXMgewoKICAgICAgICAgICAgZWxlbWVudCAiQ29udGFpbmVyIiB7CiAgICAgICAgICAgICAgICBzaGFwZSByb3VuZGVkYm94CiAgICAgICAgICAgIH0KCiAgICAgICAgICAgIGVsZW1lbnQgIkRhdGFiYXNlIiB7CiAgICAgICAgICAgICAgICBzaGFwZSBjeWxpbmRlcgogICAgICAgICAgICB9CgogICAgICAgICAgICBlbGVtZW50ICJHcm91cDpUaGlyZC1wYXJ0eSIgewogICAgICAgICAgICAgICAgYm9yZGVyIGRvdHRlZAogICAgICAgICAgICAgICAgY29sb3IgI0FBMDAwMAogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjQkIwMDAwCiAgICAgICAgICAgICAgICBvcGFjaXR5IDc1CiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiZXh0ZXJuYWwiIHsKICAgICAgICAgICAgICAgIHNoYXBlIGNvbXBvbmVudAogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjMDAwMDg4CiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiRGF0YWJhc2UiIHsKICAgICAgICAgICAgICAgIGNvbG9yICNGRkZGRkYKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgIzAwYWEwMAogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgInNwZWFrZXIiIHsKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgIzAwMDAwMAogICAgICAgICAgICAgICAgY29sb3IgI2ZmZmZmZgogICAgICAgICAgICB9CgogICAgICAgICAgICBlbGVtZW50ICJ2aWV3ZXIiIHsKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgIzAwMjQ1NAogICAgICAgICAgICAgICAgY29sb3IgI2ZmZmZmZgogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgInN0cmVhbWVyIiB7CiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICNGRjAwMDAKICAgICAgICAgICAgICAgIGNvbG9yICNmZmZmZmYKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJEYXRhYmFzZSIgewogICAgICAgICAgICAgICAgc2hhcGUgY3lsaW5kZXIKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJ3ZWJzaXRlIiB7CiAgICAgICAgICAgICAgICBzaGFwZSBXZWJCcm93c2VyCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiVWJ1bnR1IiB7CiAgICAgICAgICAgICAgICBjb2xvciAjRTk1NDIwCiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICNFOTU0MjAKICAgICAgICAgICAgICAgIHN0cm9rZSAjRTk1NDIwCiAgICAgICAgICAgICAgICBpY29uICJpbWFnZXMvdWJ1bnR1LWxvZ28uanBlZyIKICAgICAgICAgICAgfQogICAgICAgICAgICByZWxhdGlvbnNoaXAgImdSUEMiIHsKICAgICAgICAgICAgICAgIGNvbG9yICMwMDAwODgKICAgICAgICAgICAgICAgIHN0eWxlIGRvdHRlZAogICAgICAgICAgICB9CiAgICAgICAgfQogICAgfQoKfQ=="
+    "structurizr.dsl": "d29ya3NwYWNlIHsKICAgIG5hbWUgIkxpdmUtc3RyZWFtIHBsYXRmb3JtIGZvciBtdXNpY2lhbnMiCiAgICBkZXNjcmlwdGlvbiAiVGhlIHNvZnR3YXJlIGFyY2hpdGVjdHVyZSBvZiB0aGUgU3RhZ2VDYXN0IHBsYXRmb3JtLiIKCiAgICAhYWRycyBhZHJzCiAgICAhZG9jcyBkb2NzCgogICAgbW9kZWwgewogICAgICAgIHVzZXIgPSBwZXJzb24gIlVzZXIiICJXYXRjaGVzIGxpdmUgc3RyZWFtcyBhbmQgaW50ZXJhY3RzIHdpdGggdGhlIHBsYXRmb3JtIiB7CiAgICAgICAgICAgIHRhZ3Mgdmlld2VyCiAgICAgICAgfQogICAgICAgIHN0cmVhbWVyID0gcGVyc29uICJTdHJlYW1lciIgIkJyb2FkY2FzdHMgbGl2ZSB2aWRlbyBzdHJlYW1zIiB7CiAgICAgICAgICAgIHRhZ3Mgc3RyZWFtZXIKICAgICAgICB9CgogICAgICAgIGxpdmVTdHJlYW0gPSBzb2Z0d2FyZVN5c3RlbSAiTGl2ZSBTdHJlYW0gUGxhdGZvcm0iICJBIHBsYXRmb3JtIGZvciBtdXNpY2lhbnMgdG8gYnJvYWRjYXN0IGFuZCB3YXRjaCBsaXZlIHZpZGVvIHN0cmVhbXMiIHsKICAgICAgICAgICAgd2ViVUkgPSBjb250YWluZXIgIldlYiBVSSIgewogICAgICAgICAgICAgICAgdGFncyAid2Vic2l0ZSIKICAgICAgICAgICAgICAgIGRlc2NyaXB0aW9uICJBIHdlYi1iYXNlZCB1c2VyIGludGVyZmFjZSBmb3IgdXNlcnMgdG8gd2F0Y2ggbGl2ZSBzdHJlYW1zIGFuZCBpbnRlcmFjdCB3aXRoIHRoZSBwbGF0Zm9ybSIKICAgICAgICAgICAgICAgIHRlY2hub2xvZ3kgIk5leHQuanMiCiAgICAgICAgICAgIH0KCiAgICAgICAgICAgIHN0cmVhbVNlcnZpY2UgPSBjb250YWluZXIgIkxpdmUgU3RyZWFtIiAiQSBsaXZlIHZpZGVvIHN0cmVhbSIgewogICAgICAgICAgICAgICAgbGl2ZVN0cmVhbVByb2Nlc3NvciA9IGNvbXBvbmVudCAiVmlkZW8gU3RyZWFtIENvbXBvbmVudCIgIkEgY29tcG9uZW50IGZvciBzdHJlYW1pbmcgbGl2ZSB2aWRlbyIgewogICAgICAgICAgICAgICAgfQogICAgICAgICAgICB9CgogICAgICAgICAgICB2aWRlb09uRGVtYW5kU2VydmljZSA9IGNvbnRhaW5lciAiVmlkZW8gb24gRGVtYW5kIFNlcnZpY2UiICJBIHNlcnZpY2UgZm9yIGluZ2VzdGluZyBsaXZlIHZpZGVvIHN0cmVhbXMgZnJvbSBzdHJlYW1lcnMiIHsKICAgICAgICAgICAgICAgIHZpZGVvSW5nZXN0aW9uQ29tcG9uZW50ID0gY29tcG9uZW50ICJWaWRlbyBJbmdlc3Rpb24gQ29tcG9uZW50IiAiQSBjb21wb25lbnQgZm9yIGluZ2VzdGluZyBsaXZlIHZpZGVvIHN0cmVhbXMgZnJvbSBzdHJlYW1lcnMiIHsKCiAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICB2aWRlb0NodW5rc1Byb2Nlc3NvciA9IGNvbXBvbmVudCAiVmlkZW8gQ2h1bmtzIFByb2Nlc3NvciIgIkEgY29tcG9uZW50IGZvciBwcm9jZXNzaW5nIHZpZGVvIGNodW5rcyIgewoKICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgIHZvZERiID0gY29tcG9uZW50ICJWaWRlbyBPbiBEZW1hbmQgRGF0YWJhc2UiICJBIGRhdGFiYXNlIGZvciBzdG9yaW5nIHZpZGVvIG9uIGRlbWFuZCBjb250ZW50IiB7CiAgICAgICAgICAgICAgICAgICAgdGFncyBEYXRhYmFzZQogICAgICAgICAgICAgICAgfQogICAgICAgICAgICB9CgogICAgICAgICAgICBjaGF0U2VydmljZSA9IGNvbnRhaW5lciAiQ2hhdCBTZXJ2aWNlIiAiQSBjaGF0IGFwcGxpY2F0aW9uIGZvciB1c2VycyB0byBjb21tdW5pY2F0ZSB3aXRoIGVhY2ggb3RoZXIiIHsKICAgICAgICAgICAgICAgIGNoYXRDb21wb25lbnQgPSBjb21wb25lbnQgIkNoYXQgQ29tcG9uZW50IiAiQSBjaGF0IGNvbXBvbmVudCBmb3IgdXNlcnMgdG8gY29tbXVuaWNhdGUgd2l0aCBlYWNoIG90aGVyIiB7CiAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICBjaGF0RGIgPSBjb21wb25lbnQgIkNoYXQgRGF0YWJhc2UiICJBIGRhdGFiYXNlIGZvciBzdG9yaW5nIGNoYXQgbWVzc2FnZXMiIHsKICAgICAgICAgICAgICAgICAgICB0YWdzIERhdGFiYXNlCiAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgIH0KCiAgICAgICAgICAgIHBheW1lbnRzU2VydmljZSA9IGNvbnRhaW5lciAiUGF5bWVudHMgU2VydmljZSIgIkEgcGF5bWVudCBwcm9jZXNzaW5nIHN5c3RlbSBmb3Igc3RyZWFtZXJzIHRvIHJlY2VpdmUgZG9uYXRpb25zIGFuZCB0aXBzIiB7CiAgICAgICAgICAgICAgICBwYXltZW50Q29tcG9uZW50ID0gY29tcG9uZW50ICJQYXltZW50IENvbXBvbmVudCIgIkEgY29tcG9uZW50IGZvciBwcm9jZXNzaW5nIHBheW1lbnRzIiBqYXZhIHNwcmluZyB7CgogICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgcGF5bWVudHNEYiA9IGNvbXBvbmVudCAiUGF5bWVudHMgRGF0YWJhc2UiICJBIGRhdGFiYXNlIGZvciBzdG9yaW5nIHBheW1lbnQgaW5mb3JtYXRpb24iIHBvc3RncmVzIHsKICAgICAgICAgICAgICAgICAgICB0YWdzIERhdGFiYXNlCiAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgIH0KCiAgICAgICAgICAgIHN0b3JhZ2VTZXJ2aWNlID0gY29udGFpbmVyICJTdG9yYWdlIFNlcnZpY2UiICJBIHN0b3JhZ2Ugc3lzdGVtIGZvciBzdG9yaW5nIGxpdmUgc3RyZWFtcyBjaHVua3MiIHsKICAgICAgICAgICAgICAgIHRhZ3MgImJ1Y2tldCIKICAgICAgICAgICAgfQogICAgICAgICAgICAKICAgICAgICAgICAgdXNlclNlcnZpY2UgPSBjb250YWluZXIgIlVzZXIgU2VydmljZSIgIkEgd2ViLWJhc2VkIHVzZXIgaW50ZXJmYWNlIGZvciB1c2VycyB0byBpbnRlcmFjdCB3aXRoIHRoZSBwbGF0Zm9ybSIgewogICAgICAgICAgICAgICAgdXNlckJhY2tlbmQgPSBjb21wb25lbnQgIlVzZXIgQmFja2VuZCIgewogICAgICAgICAgICAgICAgICAgIGRlc2NyaXB0aW9uICJBIGJhY2tlbmQgY29tcG9uZW50IGZvciBoYW5kbGluZyB1c2VyLXJlbGF0ZWQgb3BlcmF0aW9ucyBsaWtlIGF1dGhlbnRpY2F0aW9uLCBmb2xsb3dpbmcgYW5kIHN1YnNjcmlwdGlvbnMiCiAgICAgICAgICAgICAgICAgICAgdGVjaG5vbG9neSAiSmF2YSIKICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgIHVzZXJEYiA9IGNvbXBvbmVudCAiVXNlciBEYXRhYmFzZSIgIkEgZGF0YWJhc2UgZm9yIHN0b3JpbmcgdXNlciBpbmZvcm1hdGlvbiIgewogICAgICAgICAgICAgICAgICAgIHRhZ3MgRGF0YWJhc2UKICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgfQogICAgICAgIH0KCiAgICAgICAgcGF5cGFsID0gc29mdHdhcmVTeXN0ZW0gIlBheVBhbCIgIkEgcGF5bWVudCBnYXRld2F5IGZvciBwcm9jZXNzaW5nIHBheW1lbnRzIiB7CiAgICAgICAgICAgIHRhZ3MgZXh0ZXJuYWwKICAgICAgICAgICAgcGF5cGFsU2VydmljZSA9IGNvbnRhaW5lciAiUGF5UGFsIiAiQSBwYXltZW50IGdhdGV3YXkgZm9yIHByb2Nlc3NpbmcgcGF5bWVudHMiIHsKICAgICAgICAgICAgICAgIHRhZ3MgZXh0ZXJuYWwKICAgICAgICAgICAgfQogICAgICAgIH0KCiAgICAgICAgc3RyaXBlID0gc29mdHdhcmVTeXN0ZW0gIlN0cmlwZSIgIkEgcGF5bWVudCBnYXRld2F5IGZvciBwcm9jZXNzaW5nIHBheW1lbnRzIiB7CiAgICAgICAgICAgIHRhZ3MgZXh0ZXJuYWwKICAgICAgICAgICAgc3RyaXBlU2VydmljZSA9IGNvbnRhaW5lciAiU3RyaXBlIiAiQSBwYXltZW50IGdhdGV3YXkgZm9yIHByb2Nlc3NpbmcgcGF5bWVudHMiIHsKICAgICAgICAgICAgICAgIHRhZ3MgZXh0ZXJuYWwKICAgICAgICAgICAgfQogICAgICAgIH0KCiAgICAgICAgYXV0aDAgPSBzb2Z0d2FyZVN5c3RlbSAiQXV0aDAiICJBIHVzZXIgYXV0aGVudGljYXRpb24gYW5kIGF1dGhvcml6YXRpb24gc2VydmljZSIgewogICAgICAgICAgICB0YWdzIGV4dGVybmFsCiAgICAgICAgICAgIGF1dGgwU2VydmljZSA9IGNvbnRhaW5lciAiQXV0aDAiICJBIHVzZXIgYXV0aGVudGljYXRpb24gYW5kIGF1dGhvcml6YXRpb24gc2VydmljZSIgewogICAgICAgICAgICAgICAgdGFncyBleHRlcm5hbAogICAgICAgICAgICB9CiAgICAgICAgfQoKICAgICAgICBwcm9kdWN0aW9uID0gZGVwbG95bWVudEVudmlyb25tZW50ICJQcm9kdWN0aW9uIEVudmlyb25tZW50IiB7CgogICAgICAgIH0KICAgIH0KCiAgICB2aWV3cyB7CiAgICAgICAgdGhlbWUgZGVmYXVsdAogICAgICAgIHRoZW1lcyBodHRwczovL3N0YXRpYy5zdHJ1Y3R1cml6ci5jb20vdGhlbWVzL2FtYXpvbi13ZWItc2VydmljZXMtMjAyMy4wMS4zMS90aGVtZS5qc29uCiAgICAgICAgdGhlbWVzIGh0dHBzOi8vc3RhdGljLnN0cnVjdHVyaXpyLmNvbS90aGVtZXMvYW1hem9uLXdlYi1zZXJ2aWNlcy0yMDIyLjA0LjMwL3RoZW1lLmpzb24KICAgICAgICB0aGVtZXMgaHR0cHM6Ly9zdGF0aWMuc3RydWN0dXJpenIuY29tL3RoZW1lcy9hbWF6b24td2ViLXNlcnZpY2VzLTIwMjAuMDQuMzAvdGhlbWUuanNvbgoKCiAgICAgICAgYnJhbmRpbmcgewogICAgICAgICAgICBsb2dvIGltYWdlcy9nc2FzX2xvZ28ucG5nCiAgICAgICAgfQoKICAgICAgICBzdHlsZXMgewoKICAgICAgICAgICAgZWxlbWVudCAiQ29udGFpbmVyIiB7CiAgICAgICAgICAgICAgICBzaGFwZSByb3VuZGVkYm94CiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiYnVja2V0IiB7CiAgICAgICAgICAgICAgICBzaGFwZSBQaXBlCiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICNENjk4MTMKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJEYXRhYmFzZSIgewogICAgICAgICAgICAgICAgc2hhcGUgY3lsaW5kZXIKICAgICAgICAgICAgfQoKICAgICAgICAgICAgZWxlbWVudCAiR3JvdXA6VGhpcmQtcGFydHkiIHsKICAgICAgICAgICAgICAgIGJvcmRlciBkb3R0ZWQKICAgICAgICAgICAgICAgIGNvbG9yICNBQTAwMDAKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgI0JCMDAwMAogICAgICAgICAgICAgICAgb3BhY2l0eSA3NQogICAgICAgICAgICB9CgogICAgICAgICAgICBlbGVtZW50ICJleHRlcm5hbCIgewogICAgICAgICAgICAgICAgc2hhcGUgY29tcG9uZW50CiAgICAgICAgICAgICAgICBjb2xvciAjRkZGRkZGCiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICMwMDAwODgKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJEYXRhYmFzZSIgewogICAgICAgICAgICAgICAgY29sb3IgI0ZGRkZGRgogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjMDBhYTAwCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAic3BlYWtlciIgewogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjMDAwMDAwCiAgICAgICAgICAgICAgICBjb2xvciAjZmZmZmZmCiAgICAgICAgICAgIH0KCiAgICAgICAgICAgIGVsZW1lbnQgInZpZXdlciIgewogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjMDAyNDU0CiAgICAgICAgICAgICAgICBjb2xvciAjZmZmZmZmCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAic3RyZWFtZXIiIHsKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgI0ZGMDAwMAogICAgICAgICAgICAgICAgY29sb3IgI2ZmZmZmZgogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIkRhdGFiYXNlIiB7CiAgICAgICAgICAgICAgICBzaGFwZSBjeWxpbmRlcgogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIndlYnNpdGUiIHsKICAgICAgICAgICAgICAgIHNoYXBlIFdlYkJyb3dzZXIKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJVYnVudHUiIHsKICAgICAgICAgICAgICAgIGNvbG9yICNFOTU0MjAKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgI0U5NTQyMAogICAgICAgICAgICAgICAgc3Ryb2tlICNFOTU0MjAKICAgICAgICAgICAgICAgIGljb24gImltYWdlcy91YnVudHUtbG9nby5qcGVnIgogICAgICAgICAgICB9CiAgICAgICAgICAgIHJlbGF0aW9uc2hpcCAiZ1JQQyIgewogICAgICAgICAgICAgICAgY29sb3IgIzAwMDA4OAogICAgICAgICAgICAgICAgc3R5bGUgZG90dGVkCiAgICAgICAgICAgIH0KICAgICAgICB9CiAgICB9Cgp9"
   },
   "views" : {
     "componentViews" : [ {
@@ -285,24 +376,24 @@
         "rankSeparation" : 300,
         "vertices" : false
       },
-      "containerId" : "10",
+      "containerId": "11",
       "dimensions" : {
         "height" : 811,
         "width" : 1640
       },
       "elements" : [ {
-        "id" : "11",
+        "id": "12",
         "x" : 969,
         "y" : 185
       }, {
-        "id" : "12",
+        "id": "13",
         "x" : 219,
         "y" : 185
       } ],
       "externalContainerBoundariesVisible" : false,
       "generatedKey" : true,
       "key" : "Component-001",
-      "order" : 4
+      "order": 6
     }, {
       "automaticLayout" : {
         "applied" : true,
@@ -326,7 +417,7 @@
       "externalContainerBoundariesVisible" : false,
       "generatedKey" : true,
       "key" : "Component-002",
-      "order" : 5
+      "order": 7
     }, {
       "automaticLayout" : {
         "applied" : true,
@@ -337,35 +428,27 @@
         "rankSeparation" : 300,
         "vertices" : false
       },
-      "containerId" : "13",
+      "containerId": "14",
       "dimensions" : {
         "height" : 811,
-        "width" : 3140
+        "width": 1640
       },
       "elements" : [ {
-        "id" : "14",
-        "x" : 2469,
-        "y" : 185
-      }, {
         "id" : "15",
-        "x" : 1719,
-        "y" : 185
-      }, {
-        "id" : "16",
         "x" : 969,
         "y" : 185
       }, {
-        "id" : "17",
+        "id": "16",
         "x" : 219,
         "y" : 185
       } ],
       "externalContainerBoundariesVisible" : false,
       "generatedKey" : true,
       "key" : "Component-003",
-      "order" : 6
+      "order": 8
     }, {
       "automaticLayout" : {
-        "applied" : false,
+        "applied": true,
         "edgeSeparation" : 0,
         "implementation" : "Graphviz",
         "nodeSeparation" : 300,
@@ -373,23 +456,28 @@
         "rankSeparation" : 300,
         "vertices" : false
       },
-      "containerId" : "19",
+      "containerId": "18",
+      "dimensions": {
+        "height": 811,
+        "width": 1640
+      },
       "elements" : [ {
+        "id": "19",
+        "x": 969,
+        "y": 185
+      },
+        {
         "id" : "20",
-        "x" : 0,
-        "y" : 0
-      }, {
-        "id" : "21",
-        "x" : 0,
-        "y" : 0
+          "x": 219,
+          "y": 185
       } ],
       "externalContainerBoundariesVisible" : false,
       "generatedKey" : true,
       "key" : "Component-004",
-      "order" : 7
+      "order": 9
     }, {
       "automaticLayout" : {
-        "applied" : false,
+        "applied": true,
         "edgeSeparation" : 0,
         "implementation" : "Graphviz",
         "nodeSeparation" : 300,
@@ -398,31 +486,45 @@
         "vertices" : false
       },
       "containerId" : "7",
+      "dimensions": {
+        "height": 811,
+        "width": 2390
+      },
       "elements" : [ {
         "id" : "8",
-        "x" : 0,
-        "y" : 0
+        "x": 969,
+        "y": 185
       }, {
         "id" : "9",
-        "x" : 0,
-        "y" : 0
+        "x": 219,
+        "y": 185
+      },
+        {
+          "id": "10",
+          "x": 1719,
+          "y": 185
       } ],
       "externalContainerBoundariesVisible" : false,
       "generatedKey" : true,
       "key" : "Component-005",
-      "order" : 8
+      "order": 10
     } ],
     "configuration" : {
       "branding" : {
         "logo" : "data:image/png;base64,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"
       },
-      "lastSavedView" : "SystemContext-001",
+      "lastSavedView": "Container-004",
       "metadataSymbols" : "SquareBrackets",
       "styles" : {
         "elements" : [ {
           "shape" : "RoundedBox",
           "tag" : "Container"
         }, {
+          "background": "#d69813",
+          "shape": "Pipe",
+          "tag": "bucket"
+        },
+          {
           "background" : "#00aa00",
           "color" : "#ffffff",
           "shape" : "Cylinder",
@@ -435,6 +537,7 @@
           "tag" : "Group:Third-party"
         }, {
           "background" : "#000088",
+            "color": "#ffffff",
           "shape" : "Component",
           "tag" : "external"
         }, {
@@ -478,44 +581,126 @@
         "rankSeparation" : 300,
         "vertices" : false
       },
+      "dimensions": {
+        "height": 811,
+        "width": 890
+      },
+      "elements": [
+        {
+          "id": "26",
+          "x": 219,
+          "y": 185
+        }
+      ],
+      "externalSoftwareSystemBoundariesVisible": false,
+      "generatedKey": true,
+      "key": "Container-001",
+      "order": 3,
+      "softwareSystemId": "25"
+    },
+      {
+        "automaticLayout": {
+          "applied": true,
+          "edgeSeparation": 0,
+          "implementation": "Graphviz",
+          "nodeSeparation": 300,
+          "rankDirection": "TopBottom",
+          "rankSeparation": 300,
+          "vertices": false
+        },
       "dimensions" : {
         "height" : 811,
         "width" : 5390
       },
       "elements" : [ {
         "id" : "4",
-        "x" : 1719,
+        "x": 1720,
         "y" : 185
       }, {
         "id" : "5",
-        "x" : 969,
+        "x": 970,
         "y" : 185
       }, {
         "id" : "7",
-        "x" : 219,
+        "x": 220,
         "y" : 185
       }, {
-        "id" : "10",
-        "x" : 4719,
+        "id": "11",
+        "x": 4720,
+        "y": 185
+      },
+        {
+          "id": "14",
+          "x": 3970,
         "y" : 185
       }, {
-        "id" : "13",
-        "x" : 3969,
+          "id": "17",
+          "x": 3220,
         "y" : 185
       }, {
         "id" : "18",
-        "x" : 3219,
+          "x": 2470,
         "y" : 185
-      }, {
-        "id" : "19",
-        "x" : 2469,
+        }
+      ],
+        "externalSoftwareSystemBoundariesVisible": false,
+        "generatedKey": true,
+        "key": "Container-002",
+        "order": 5,
+        "softwareSystemId": "3"
+      },
+      {
+        "automaticLayout": {
+          "applied": true,
+          "edgeSeparation": 0,
+          "implementation": "Graphviz",
+          "nodeSeparation": 300,
+          "rankDirection": "TopBottom",
+          "rankSeparation": 300,
+          "vertices": false
+        },
+        "dimensions": {
+          "height": 811,
+          "width": 890
+        },
+        "elements": [
+          {
+            "id": "22",
+            "x": 219,
+            "y": 185
+          }
+        ],
+        "externalSoftwareSystemBoundariesVisible": false,
+        "generatedKey": true,
+        "key": "Container-003",
+        "order": 12,
+        "softwareSystemId": "21"
+      },
+      {
+        "automaticLayout": {
+          "applied": true,
+          "edgeSeparation": 0,
+          "implementation": "Graphviz",
+          "nodeSeparation": 300,
+          "rankDirection": "TopBottom",
+          "rankSeparation": 300,
+          "vertices": false
+        },
+        "dimensions": {
+          "height": 811,
+          "width": 890
+        },
+        "elements": [
+          {
+            "id": "24",
+            "x": 219,
         "y" : 185
       } ],
       "externalSoftwareSystemBoundariesVisible" : false,
       "generatedKey" : true,
-      "key" : "Container-001",
-      "order" : 3,
-      "softwareSystemId" : "3"
+        "key": "Container-004",
+        "order": 14,
+        "softwareSystemId": "23"
     } ],
     "systemContextViews" : [ {
       "automaticLayout" : {
@@ -532,15 +717,96 @@
         "width" : 850
       },
       "elements" : [ {
-        "id" : "3",
-        "x" : 200,
+        "id": "25",
+        "x": 199,
         "y" : 165
       } ],
       "enterpriseBoundaryVisible" : true,
       "generatedKey" : true,
       "key" : "SystemContext-001",
       "order" : 2,
+      "softwareSystemId": "25"
+    },
+      {
+        "automaticLayout": {
+          "applied": true,
+          "edgeSeparation": 0,
+          "implementation": "Graphviz",
+          "nodeSeparation": 300,
+          "rankDirection": "TopBottom",
+          "rankSeparation": 300,
+          "vertices": false
+        },
+        "dimensions": {
+          "height": 700,
+          "width": 850
+        },
+        "elements": [
+          {
+            "id": "3",
+            "x": 199,
+            "y": 165
+          }
+        ],
+        "enterpriseBoundaryVisible": true,
+        "generatedKey": true,
+        "key": "SystemContext-002",
+        "order": 4,
       "softwareSystemId" : "3"
+      },
+      {
+        "automaticLayout": {
+          "applied": true,
+          "edgeSeparation": 0,
+          "implementation": "Graphviz",
+          "nodeSeparation": 300,
+          "rankDirection": "TopBottom",
+          "rankSeparation": 300,
+          "vertices": false
+        },
+        "dimensions": {
+          "height": 700,
+          "width": 850
+        },
+        "elements": [
+          {
+            "id": "21",
+            "x": 199,
+            "y": 165
+          }
+        ],
+        "enterpriseBoundaryVisible": true,
+        "generatedKey": true,
+        "key": "SystemContext-003",
+        "order": 11,
+        "softwareSystemId": "21"
+      },
+      {
+        "automaticLayout": {
+          "applied": true,
+          "edgeSeparation": 0,
+          "implementation": "Graphviz",
+          "nodeSeparation": 300,
+          "rankDirection": "TopBottom",
+          "rankSeparation": 300,
+          "vertices": false
+        },
+        "dimensions": {
+          "height": 700,
+          "width": 850
+        },
+        "elements": [
+          {
+            "id": "23",
+            "x": 199,
+            "y": 165
+          }
+        ],
+        "enterpriseBoundaryVisible": true,
+        "generatedKey": true,
+        "key": "SystemContext-004",
+        "order": 13,
+        "softwareSystemId": "23"
     } ],
     "systemLandscapeViews" : [ {
       "automaticLayout" : {
@@ -554,19 +820,34 @@
       },
       "dimensions" : {
         "height" : 800,
-        "width" : 2350
+        "width": 4600
       },
       "elements" : [ {
         "id" : "1",
-        "x" : 200,
+        "x": 199,
         "y" : 165
       }, {
         "id" : "2",
-        "x" : 950,
+        "x": 949,
         "y" : 165
       }, {
         "id" : "3",
-        "x" : 1700,
+        "x": 3949,
+        "y": 165
+      },
+        {
+          "id": "21",
+          "x": 1699,
+          "y": 165
+        },
+        {
+          "id": "23",
+          "x": 2449,
+          "y": 165
+        },
+        {
+          "id": "25",
+          "x": 3199,
         "y" : 165
       } ],
       "enterpriseBoundaryVisible" : true,

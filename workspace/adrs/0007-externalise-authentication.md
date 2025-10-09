@@ -1,6 +1,6 @@
 # 7. Use Auth0 for authentication 
 
-Date: 2025-10-13
+Date: 2025-10-06
 ## Status
 
 Accepted
