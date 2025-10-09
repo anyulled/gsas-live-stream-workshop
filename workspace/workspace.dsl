@@ -15,6 +15,7 @@ workspace {
 
         liveStream = softwareSystem "Live Stream Platform" "A platform for musicians to broadcast and watch live video streams" {
             webUI = container "Web UI" {
+                tags "website"
                 description "A web-based user interface for users to watch live streams and interact with the platform"
                 technology "Next.js"
             }
@@ -59,7 +60,7 @@ workspace {
             }
 
             storageService = container "Storage Service" "A storage system for storing live streams chunks" {
-
+                tags "bucket"
             }
 
             videoChunksProcessor -> storageService "stores video chunks" "https" "http"
@@ -91,6 +92,7 @@ workspace {
         chatService -> userService "Retrieves user information" "grpc" "grpc"
         paymentsService -> userService "Retrieves user information" "grpc" "grpc"
         streamService -> userService "Retrieves user information" "grpc" "grpc"
+        streamService -> videoOnDemandService "Uses the video  chunks processor for splitting the session video in smaller chunks"
 
         liveStreamProcessor -> storageService "Stores session videos" "RTMP" "RTMP"
 
@@ -186,7 +188,7 @@ workspace {
 
                         globalAccelerator -> webInstance "directing traffic to the nearest application endpoint"
                         webInstance -> apiGatewayInfra "Access backend services" "https" "http"
-                        webInstance -> usersDatabase "Reads User Data" "jdbc" "jdbc"
+                        userInstance -> usersDatabase "Reads User Data" "jdbc" "jdbc"
 
                         deploymentNode "EC2 - Stream Service" {
                             tags "Amazon Web Services - EC2"
@@ -253,6 +255,66 @@ workspace {
         themes https://static.structurizr.com/themes/amazon-web-services-2022.04.30/theme.json
         themes https://static.structurizr.com/themes/amazon-web-services-2020.04.30/theme.json
 
+        systemLandscape liveStream {
+            title "Landscape view of StageCast"
+            include *
+            autoLayout lr
+        }
+
+        systemContext liveStream {
+            title "System context view of StageCast"
+            include *
+            autolayout lr
+        }
+
+        container liveStream {
+            title "Container view of StageCast"
+            include *
+            autoLayout lr
+        }
+        # Requirements
+        # 1 & 6. Users should be able to watch live streams
+        dynamic liveStream {
+            title "Streamer Broadcast Session"
+            streamer -> webUI "Uses thee Web UI to broadcast a session"
+            webUI -> streamService "Uses the stream service to ingest the video"
+            streamService -> videoOnDemandService "Uses the video  chunks processor for splitting the session video in smaller chunks"
+            videoOnDemandService -> storageService "Stores de video in smaller chunks for enabling adaptive bitrate"
+            autoLayout lr
+        }
+        # 2 & 6. Users should be able to watch live streams
+        dynamic liveStream {
+            title "User views a session"
+            user -> webUI "Uses thee Web UI to choose a session"
+            webUI -> streamService "Uses the stream service to watch the video"
+            streamService -> videoOnDemandService "Uses the video  chunks processor for retrieving the session video in smaller chunks"
+            videoOnDemandService -> storageService "REads de video in smaller chunks for enabling adaptive bitrate"
+            autoLayout lr
+        }
+        # 3. Users should be able to chat in real-time
+        dynamic liveStream {
+            streamer -> webUI "Uses thee Web UI to broadcast a session"
+            user -> webUI "Uses thee Web UI to join a session"
+            webUI -> userService "Uses the user service to authenticate users"
+            webUI -> chatService "The chat service enables messaging between users and streamers"
+            autoLayout lr
+        }
+        # 4 & 5. Users should be able to follow and subscribe to streamers
+        dynamic liveStream {
+            streamer -> webUI "creates a streamer account"
+            user -> webUI "Uses the Web UI susbcribe to streamers"
+            webUI -> userService "Uses the user service to authenticate users"
+            userService -> paymentsService "Users can donate and subscribe to premium levels"
+            paymentsService -> paypal "Payment is done via Paypal"
+            paymentsService -> stripe "Payment is done via Stripe"
+            autoLayout lr
+        }
+
+        deployment * production {
+            title "Production deployment with AWS"
+            include *
+        }
+
         branding {
             logo images/gsas_logo.png
         }
@@ -262,7 +324,10 @@ workspace {
             element "Container" {
                 shape roundedbox
             }
-
+            element "bucket" {
+                shape Pipe
+                background #D69813
+            }
             element "Database" {
                 shape cylinder
             }
@@ -273,6 +338,7 @@ workspace {
                 background #BB0000
                 opacity 75
             }
+
             element "external" {
                 shape component
                 color #FFFFFF
