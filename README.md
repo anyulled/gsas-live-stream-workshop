@@ -12,8 +12,22 @@
 
 Execute this command to run a Docker container with a structurizr lite image.
 
+### Mac OS / Linux
+
 ```bash
-docker run --name structurizr --env=PORT=8080 --volume=$(pwd)/workspace:/usr/local/structurizr -p 8888:8080 -d structurizr/lite:latest
+docker run --name gsas-structurizr --env=PORT=8080 --volume=$(pwd)/workspace:/usr/local/structurizr -p 8888:8080 -d structurizr/lite:latest
+```
+
+### Windows + WSL
+
+```commandline
+docker run --name gsas-structurizr --env=PORT=8080 --volume="%cd%\workspace:/usr/local/structurizr" -p 8888:8080 -d structurizr/lite:latest
+```
+
+### Windows
+
+```commandline
+docker run --name gsas-structurizr --env=PORT=8080 --volume="/c/Users/<YourUser>/workspace:/usr/local/structurizr" -p 8888:8080 -d structurizr/lite:preview
 ```
 
 ## Links
