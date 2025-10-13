@@ -82,7 +82,7 @@ workspace {
             }
         }
 
-        user -> webUI "interacts with" "https" "http"
+        user -> webUI "interacts with" "WebRTC" "http"
         streamer -> webUI "broadcasts music sessions" "https" "http"
         webUI -> liveStreamProcessor "Ingest streaming sessions" "RTMP" "RTMP"
         webUI -> videoOnDemandService "Get videos on demand" "HLS" "HLS"
@@ -272,7 +272,7 @@ workspace {
             include *
         }
         # Requirements
-        # 1 & 6. Users should be able to watch live streams
+        # 1 & 6. Users should be able to broadcast live streams
         dynamic liveStream {
             title "Streamer Broadcast Session"
             streamer -> webUI "Uses thee Web UI to broadcast a session"
